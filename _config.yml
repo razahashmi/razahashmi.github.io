@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "My Website"
+title                    : "Home"
 title_separator          : "-"
 name                     : &name "Raza Hashmi"
 description              : &description "ML researcher"
@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Raza Hashmi"
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   bio              : "ML Researcher"
   location         : "Pakistan"
   employer         :
