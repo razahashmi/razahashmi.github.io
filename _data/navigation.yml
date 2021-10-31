@@ -5,11 +5,11 @@ main:
 
   - title: "Blog Posts"
     url: /year-archive/
-  
-  -titke: "Ideas that didnt work"
-    url: /talks/
 
   - title: "CV"
     url: /cv/
+
+  - titke: "Ideas that didnt work"
+    url: /talks/
     
 
