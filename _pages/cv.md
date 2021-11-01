@@ -11,30 +11,52 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. in Economics, Lahore University of Management Sciences, 2016
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* MAarch 2016 - Present: Technical Innovation Manager 
+  * Ark Re ltd.
+  * Duties included: Leading Development team, Solutions Engineering, ML .
+
+* April 2019 - Feb 2020: Research Assistant
+  * Lahore University of Management Sciences
+  * Duties included: Working on different Research Ideas.
+  * Supervisor: Professor Asim Karim
+
+* 2016-2018: Research Assistant
+  * Lahore University of Management Sciences
+  * Duties included: writing code and conducting experiments to quantify risk attitudes in Islamic vs traditional equities
+  * Supervisor: Professor Imtiaz-ul-Haq
+  
+* 2016:Teaching Assistant
+  * MECO 121 Principles of Macroeconomics, LUMS
+
+
+* 2015: Teaching Assistant
+  * ECON 221 Intermediate Macroeconomics, LUMS
+
+Honors & Awards
+======
+* Graduation with High Distinction, 2016
+* Deans Honours List – Lahore University of Management Sciences, 2012-2016
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* SQL
+* Python
+  * Pytorch
+  * Jax
+  * Tensorflow
+* Java/kotlin/App Development
+* Languages
+  * Urdu (Native)
+  * Persian (Native)
+  * Punjabi (Native)
+  * English (Expert)
+  * Hindi (Expert)
+  * French (Beginner).
 
 Publications
 ======
@@ -54,6 +76,4 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
