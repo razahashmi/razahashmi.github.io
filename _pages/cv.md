@@ -16,7 +16,7 @@ Education
 Work experience
 ======
 
-* MAarch 2016 - Present: Technical Innovation Manager 
+* March 2016 - Present: Technical Innovation Manager 
   * Ark Re ltd.
   * Duties included: Leading Development team, Solutions Engineering, ML .
 
