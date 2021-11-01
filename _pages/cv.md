@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* B.S. in Economics, Lahore University of Management Sciences, 2016
+* BSc in Economics, Lahore University of Management Sciences, 2016
 
 Work experience
 ======
@@ -44,12 +44,13 @@ Honors & Awards
   
 Skills
 ======
-* SQL
 * Python
   * Pytorch
   * Jax
   * Tensorflow
-* Java/kotlin/App Development
+  * Keras
+* SQL
+* Java, kotlin, App Development
 * Languages
   * Urdu (Native)
   * Persian (Native)
