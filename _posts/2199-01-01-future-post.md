@@ -1,5 +1,5 @@
 ---
-title: 'Future Blog Post'
+title: 'Future Blog Posts'
 date: 2022-03-01
 permalink: /posts/2022/03/blog-post-2/
 tags:
