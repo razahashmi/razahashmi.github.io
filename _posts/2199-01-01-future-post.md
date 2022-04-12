@@ -1,11 +1,11 @@
 ---
 title: 'Future Blog Post'
-date: 2199-01-01
-permalink: /posts/2012/08/blog-post-4/
+date: 2022-03-01
+permalink: /posts/2022/03/blog-post-2/
 tags:
-  - cool posts
-  - category1
-  - category2
+  - Philosophy
+  - Machine learning
+  - Tech & software dev
 ---
 
-This post will show up by default. To disable scheduling of future posts, edit `config.yml` and set `future: false`. 
+In my free time, I love to read philosophy books and also like to follow up on the latest developments in technology and software developments. Hence, I will also amuse you with some of my ramblings on philosophy, technological advancements and cool new software features/ideas that i think are really cool.
