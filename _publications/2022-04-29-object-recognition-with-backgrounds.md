@@ -1,11 +1,11 @@
 ---
 title: "Explainable AI: Object Recognition With Help From Background"
 collection: publications
-permalink: /publication/2022-04-29-paper-title-number-1
+permalink: /publication/2022-04-29-object-recognition-with-backgrounds
 excerpt: 'This paper explores how and when backgrounds help a model with object classification task'
 date: 2022-04-29
-venue: 'The International Conference on Learning Representations (ICLR), CSS Workshop, 2022'
-paperurl: 'https://sites.google.com/view/cssiclr2022/home'
+venue: 'The International Conference on Learning Representations (ICLR), CSS Workshop'
+paperurl: [Workshop website](https://sites.google.com/view/cssiclr2022/home)
 citation: 'Raza Hashmi, Qiang Li. (2022). "Object Recognition With Help From Background." <i>ICLR CSS Workshop</i>.(1)'
 ---
 This work explores how backgrounds might help in object recognition tasks in depth. We categorize the elements present in the background into two factors, class independent factors and class dependent factors.
