@@ -16,7 +16,7 @@ Education
 Work experience
 ======
 
-* March 2016 - Present: Technical Innovation Manager 
+* March 2016 - Present: Technical and Data Lead
   * Ark Re ltd.
   * Duties included: Leading Development team, Solutions Engineering, ML .
 
