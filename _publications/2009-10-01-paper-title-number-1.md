@@ -1,15 +1,15 @@
 ---
-title: "Paper Title Number 1"
+title: "Explainable AI: Object Recognition With Help From Background"
 collection: publications
-permalink: /publication/2009-10-01-paper-title-number-1
+permalink: /publication/2022-04-29-paper-title-number-1
 excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
-date: 2009-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper1.pdf'
-citation: 'Your Name, You. (2009). &quot;Paper Title Number 1.&quot; <i>Journal 1</i>. 1(1).'
+date: 2022-04-29
+venue: 'The International Conference on Learning Representations (ICLR), CSS Workshop, 2022'
+paperurl: 'https://sites.google.com/view/cssiclr2022/home'
+citation: 'Raza Hashmi, Qiang Li. (2022). "Object Recognition With Help From Background." <i>ICLR Workshop</i>.(1)'
 ---
-This paper is about the number 1. The number 2 is left for future work.
+This work explores how backgrounds might help in object recognition tasks in depth. We categorize the elements present in the background into two factors, class independent factors and class dependent factors.
+In our paper, we find that segmenting out class independent factors help the models achieve better classification accuracy and we also show that class dependent factors help explain the non trivial accuracy that models acheive on background only classification.
 
-[Download paper here](http://academicpages.github.io/files/paper1.pdf)
+[Download paper here](http://academicpages.github.io/files/ObjectClassificationWithHelpFromBackgrounds_ICLR_workshop_v1.2.pdf)
 
-Recommended citation: Your Name, You. (2009). "Paper Title Number 1." <i>Journal 1</i>. 1(1).
