@@ -15,7 +15,7 @@ Looking for admissions into a PhD programme and in search for professors/peers t
 <!--- This site similar to my life is under-construction and eventual progress will be made. 
 Thank you for bearing with this. --->
 
-<h5> News </h5>
+<h1> News </h1>
 
 - Working on a user friendly SOTA image segmentation tool along with a dataset of foreground and background segmentatiions. *[Link to code](https://www.kaggle.com/datasets/qianglijonas/imagenet11)*. 
 - Presented "Explainable AI: Object Recognition With Help From Background" in ICLR 2022 (CSS Workshop)
