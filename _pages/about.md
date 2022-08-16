@@ -18,6 +18,6 @@ Thank you for bearing with this. --->
 <h1> News </h1>
 
 - Working on a user friendly SOTA image segmentation tool along with a dataset of foreground and background segmentatiions. *[Link to code](https://www.kaggle.com/datasets/qianglijonas/imagenet11)*. 
-- Presented "Explainable AI: Object Recognition With Help From Background" in ICLR 2022 (CSS Workshop)
+- Presented our work, "Explainable AI: Object Recognition With Help From Background", in ICLR 2022 (CSS Workshop)
 
 
