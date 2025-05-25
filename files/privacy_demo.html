@@ -642,43 +642,196 @@
 
     <div id="graph-privacy" class="section">
         <!-- Graph Privacy Content START -->
-        <h2>6. Graph-Based Privacy: Anonymizing Organizational Structures</h2>
-        <p>Organizational hierarchy data ("who reports to whom") is a form of graph data. Individuals can sometimes be re-identified based on their unique position within this structure, such as having a unique number of direct reports or a very specific role in a small team. Graph-based privacy techniques aim to mitigate these risks.</p>
-        <p>This demo visualizes a small fictional org chart. We'll illustrate how structural properties (like the number of direct reports) can be anonymized to protect individuals.</p>
+    <h2>6. Graph-Based Privacy: Anonymizing Organizational Structures</h2>
+    <p>Organizational hierarchy data ("who reports to whom") is a form of graph data. Individuals can sometimes be re-identified based on their unique position within this structure, such as having a unique number of direct reports or a very specific role in a small team. Graph-based privacy techniques aim to mitigate these risks.</p>
+    <p>This demo visualizes an expanded fictional org chart with improved styling. We'll illustrate how structural properties (like the number of direct reports or specific roles) can be generalized to protect individuals. Note that the visual complexity of sites like 'theorg.com' typically relies on specialized JavaScript libraries for advanced rendering and layout, which are beyond the scope of this self-contained demo.</p>
 
-        <div class="controls">
-            <label for="graph_minDegreeK">Min K for Report Count Groups (e.g., at least K managers in a count 'bucket'): </label>
-            <input type="number" id="graph_minDegreeK" value="2" min="1" style="width: 60px;">
-            <button onclick="runGraphPrivacyDemo()">Apply Graph Anonymization</button>
-        </div>
+    <div class="controls">
+        <label for="graph_minDegreeK_updated">Min K for Report Count Groups: </label>
+        <input type="number" id="graph_minDegreeK_updated" value="2" min="1" style="width: 60px;">
+        <button onclick="runGraphPrivacyDemoUpdated()">Apply Graph Anonymization</button>
+    </div>
 
-        <div class="data-view" style="flex-direction: column;">
-            <div class="data-table-container"> <!-- Re-using class for consistent spacing -->
-                <h3>Original Fictional Org Chart</h3>
-                <div id="graph_originalOrgChart" class="org-chart-container"></div>
-            </div>
-            <div class="data-table-container" style="margin-top: 20px;">
-                <h3>Anonymized Org Chart (Illustrative)</h3>
-                <p><span id="graph_status"></span></p>
-                <div id="graph_anonymizedOrgChart" class="org-chart-container"></div>
+    <div class="data-view" style="flex-direction: column;">
+        <div class="data-table-container"> <!-- Re-using class for consistent spacing -->
+            <h3>Original Fictional Org Chart (Expanded)</h3>
+            <div id="graph_originalOrgChart_updated" class="org-chart-container-updated">
+                <!-- Chart will be rendered here -->
             </div>
         </div>
+        <div class="data-table-container" style="margin-top: 30px;">
+            <h3>Anonymized Org Chart (Illustrative)</h3>
+            <p><span id="graph_status_updated"></span></p>
+            <div id="graph_anonymizedOrgChart_updated" class="org-chart-container-updated">
+                <!-- Chart will be rendered here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- New CSS for the updated org chart - Add this to your main <style> block or keep it scoped if preferred -->
+    <style>
+        .org-chart-container-updated {
+            --node-bg: #fff;
+            --node-border: #d1d5db; /* Tailwind gray 300 */
+            --node-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --connector-color: #9ca3af; /* Tailwind gray 400 */
+            --avatar-bg: #007bff;
+            --avatar-text: #fff;
+            --generalized-node-bg: #fffbeb; /* Tailwind yellow 50 */
+            --generalized-node-border: #fde68a; /* Tailwind yellow 200 */
+
+            font-family: var(--font-sans-serif);
+            padding: 20px;
+            background-color: #f9fafb; /* Tailwind gray 50 */
+            border-radius: 8px;
+            overflow-x: auto; /* Allow horizontal scrolling for large charts */
+        }
+
+        .org-chart-updated ul {
+            padding-left: 0;
+            margin: 0;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .org-chart-updated li {
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Center the node content */
+            position: relative;
+        }
+
+        /* Basic Connector Lines - Vertical from parent to child group */
+        .org-chart-updated li > .employee-card-updated::before {
+            content: '';
+            position: absolute;
+            top: -20px; /* Distance from top of card to connector start */
+            left: 50%;
+            width: 1px;
+            height: 20px; /* Length of the vertical line above the card */
+            background-color: var(--connector-color);
+            z-index: 1;
+        }
+         /* No vertical line for the CEO (first card in the first list) */
+        .org-chart-updated > ul > li:first-child > .employee-card-updated::before {
+            display: none;
+        }
+
+
+        .employee-card-updated {
+            display: inline-block; /* Allows centering and defined width */
+            min-width: 200px;
+            background-color: var(--node-bg);
+            border: 1px solid var(--node-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 10px 10px 10px; /* Top margin for connector space */
+            box-shadow: var(--node-shadow);
+            text-align: left; /* Text alignment within card */
+            position: relative; /* For pseudo-elements & avatar */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .employee-card-updated:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+
+        .employee-card-updated .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--avatar-bg);
+            color: var(--avatar-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1em;
+            float: left;
+            margin-right: 12px;
+        }
+        .employee-card-updated .name {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #111827; /* Tailwind gray 900 */
+        }
+        .employee-card-updated .role {
+            font-size: 0.9em;
+            color: #4b5563; /* Tailwind gray 600 */
+            margin-bottom: 3px;
+        }
+        .employee-card-updated .department {
+            font-size: 0.8em;
+            color: #6b7280; /* Tailwind gray 500 */
+            margin-bottom: 8px;
+        }
+        .employee-card-updated .report-count-updated {
+            font-size: 0.8em;
+            color: var(--secondary-color);
+            font-weight: 500;
+            background-color: #e0e7ff; /* Indigo 100 */
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Children container */
+        .org-chart-updated li > ul {
+            padding-top: 20px; /* Space for horizontal connector */
+            display: flex; /* Arrange children horizontally */
+            justify-content: center; /* Center children */
+            flex-wrap: nowrap; /* Prevent wrapping for this basic version */
+        }
         
-        <div class="explanation">
-            <h4>How Graph-Based Privacy Was Applied (Best Case Scenario)</h4>
-            <p>The "who do you work for" and "who works for you" data from the 1000-participant survey formed a complex organizational graph. Simply removing names wasn't enough, as structural information could still identify people. For example: "the only VP with exactly 2 direct reports, one of whom is a Director with 7 reports."</p>
-            <p>My approach involved several layers:
-                <ul>
-                    <li><strong>Degree Anonymization (k-degree anonymity):</strong> Ensuring that for any given number of direct reports (degree), there were at least 'k' managers with that same degree, or their degree was generalized into a bucket (e.g., "1-3 reports", "4-7 reports"). This demo illustrates this by "bucketing" report counts.</li>
-                    <li><strong>Role/Attribute Generalization:</strong> If a role was too unique within a specific branch of the hierarchy (e.g., "Lead Data Privacy Officer for EU Operations"), it would be generalized (e.g., "Senior Compliance Officer").</li>
-                    <li><strong>Structural Anonymization (Conceptual):</strong> For more advanced protection, techniques like adding/removing carefully selected (false) edges or nodes can be used to break unique structural patterns, though this is highly complex. My work focused on practical degree and role generalization for our survey data.</li>
-                </ul>
-            <strong>Best Case:</strong> An analyst could query "average team size for Senior Managers" and get a useful, slightly generalized result (e.g., "average 5-8 reports") without being able to pinpoint a specific Senior Manager who might be the only one with exactly 6 reports. Unique roles in small teams would be shown with generalized titles.
-            </p>
-            <div class="innovation">
-                <strong>My Innovation Highlight:</strong> I developed a 'structural risk score' for each node in the hierarchy, considering its degree, the uniqueness of its role title within its department, and the size of its team relative to others. This score helped prioritize which parts of the org graph needed anonymization most urgently. We then applied iterative generalization (first to report counts, then to roles) until the risk scores for all nodes fell below a defined threshold, balancing privacy with the utility of the hierarchical data for analysis.
-            </div>
+        /* Horizontal Connector Line above children group */
+        .org-chart-updated li > ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%; /* Adjust as needed */
+            right: 10%; /* Adjust as needed */
+            height: 1px;
+            background-color: var(--connector-color);
+            z-index: 1;
+        }
+        /* Adjust for single child to not have a long horizontal line */
+        .org-chart-updated li > ul > li:only-child::before { /* This targets the vertical line of the child */
+             /* If only one child, its vertical line should connect directly */
+        }
+        .org-chart-updated li > ul > li:only-child ~ li { /* Hide horizontal line if only one child */
+            /* This selector logic might need refinement for complex cases */
+        }
+
+
+        /* Styling for generalized nodes */
+        .employee-card-updated.generalized-node {
+            background-color: var(--generalized-node-bg);
+            border-color: var(--generalized-node-border);
+            border-left-width: 4px;
+        }
+        .employee-card-updated.generalized-node .name,
+        .employee-card-updated.generalized-node .role,
+        .employee-card-updated.generalized-node .department {
+            color: #78350f; /* Tailwind amber 800 */
+        }
+    </style>
+
+    <div class="explanation">
+        <h4>How Graph-Based Privacy Was Applied (Best Case Scenario)</h4>
+        <p>The "who do you work for" and "who works for you" data from the 1000-participant survey formed a complex organizational graph. Simply removing names wasn't enough, as structural information could still identify people. For example: "the only VP with exactly 2 direct reports, one of whom is a Director with 7 reports."</p>
+        <p>My approach involved several layers:
+            <ul>
+                <li><strong>Degree Anonymization (k-degree anonymity):</strong> Ensuring that for any given number of direct reports (degree), there were at least 'k' managers with that same degree, or their degree was generalized into a bucket (e.g., "1-3 reports", "4-7 reports"). This demo illustrates this by "bucketing" report counts.</li>
+                <li><strong>Role/Attribute Generalization:</strong> If a role was too unique within a specific branch of the hierarchy (e.g., "Lead Data Privacy Officer for EU Operations"), it would be generalized (e.g., "Senior Compliance Officer").</li>
+                <li><strong>Structural Anonymization (Conceptual):</strong> For more advanced protection, techniques like adding/removing carefully selected (false) edges or nodes can be used to break unique structural patterns, though this is highly complex. My work focused on practical degree and role generalization for our survey data.</li>
+            </ul>
+        <strong>Best Case:</strong> An analyst could query "average team size for Senior Managers" and get a useful, slightly generalized result (e.g., "average 5-8 reports") without being able to pinpoint a specific Senior Manager who might be the only one with exactly 6 reports. Unique roles in small teams would be shown with generalized titles.
+        </p>
+        <div class="innovation">
+            <strong>My Innovation Highlight:</strong> I developed a 'structural risk score' for each node in the hierarchy, considering its degree, the uniqueness of its role title within its department, and the size of its team relative to others. This score helped prioritize which parts of the org graph needed anonymization most urgently. We then applied iterative generalization (first to report counts, then to roles) until the risk scores for all nodes fell below a defined threshold, balancing privacy with the utility of the hierarchical data for analysis.
         </div>
+    </div>
+
         <!-- Graph Privacy Content END -->
     </div>
 
@@ -999,31 +1152,144 @@
     }
 
     // --- Graph-Based Privacy Demo ---
-    const graph_orgData = { name: "Alice (CEO)", role: "Chief Executive Officer", reports: [ { name: "Bob (VP Eng)", role: "VP Engineering", reports: [ { name: "Charlie (Dir.Eng)", role: "Director of Eng.", reports: [ { name: "Eve (Mgr.Alpha)", role: "Eng. Manager Alpha", reports: [ { name: "Grace (Eng)", role: "Software Engineer" }, { name: "Heidi (Eng)", role: "Software Engineer" } ]}, { name: "Frank (Mgr.Beta)", role: "Eng. Manager Beta", reports: [ { name: "Ivy (Eng)", role: "Software Engineer" }, { name: "Jack (Eng)", role: "Software Engineer" }, { name: "Judy (Eng)", role: "Software Engineer" } ]} ]}, { name: "Dave (Dir.Platform)", role: "Director of Platform", reports: [ { name: "Kyle (Mgr.Plat)", role: "Platform Manager", reports: [ { name: "Liam (Eng)", role: "Platform Engineer" } ]} ]} ]}, { name: "Mallory (VP Sales)", role: "VP Sales", reports: [ { name: "Nina (Dir.Sales E)", role: "Sales Director East", reports: [ { name: "Oscar (Mgr.Sales A)", role: "Sales Manager A", reports: []} ]}, { name: "Peggy (Dir.Sales W)", role: "Sales Director West", reports: []} ]} ] };
-    function renderOrgChart(node, parentElement, isAnonymized, kDegree) {
+    // --- Graph-Based Privacy Demo (Updated) ---
+    const expanded_graph_orgData = {
+        id: "ceo", name: "Alia Khan", role: "Chief Executive Officer", department: "Executive Office", avatarInitials: "AK", reports: [
+            { id: "vp_tech", name: "Ben Carter", role: "VP, Technology", department: "Technology", avatarInitials: "BC", reports: [
+                { id: "dir_eng_core", name: "Chloe Davis", role: "Director, Core Engineering", department: "Engineering", avatarInitials: "CD", reports: [
+                    { id: "mgr_eng_alpha", name: "David Lee", role: "Engineering Manager, Alpha", department: "Engineering", avatarInitials: "DL", reports: [
+                        { id: "eng_grace", name: "Grace Miller", role: "Senior Software Engineer", department: "Engineering", avatarInitials: "GM" },
+                        { id: "eng_heidi", name: "Heidi Wilson", role: "Software Engineer II", department: "Engineering", avatarInitials: "HW" },
+                        { id: "eng_ian", name: "Ian Brown", role: "Software Engineer", department: "Engineering", avatarInitials: "IB" }
+                    ]},
+                    { id: "mgr_eng_zeta", name: "Eva Rostova", role: "Engineering Manager, Zeta", department: "Engineering", avatarInitials: "ER", reports: [
+                        { id: "eng_jack", name: "Jack Quinn", role: "Lead Software Engineer", department: "Engineering", avatarInitials: "JQ" },
+                        { id: "eng_kyle", name: "Kyle Smith", role: "Software Engineer III", department: "Engineering", avatarInitials: "KS" }
+                    ]}
+                ]},
+                { id: "dir_platform", name: "Fatima Ahmed", role: "Director, Platform & Infra", department: "Platform", avatarInitials: "FA", reports: [
+                    { id: "mgr_infra", name: "George King", role: "Infrastructure Manager", department: "Platform", avatarInitials: "GK", reports: [
+                        { id: "ops_liam", name: "Liam O'Connell", role: "DevOps Engineer", department: "Platform", avatarInitials: "LO" },
+                        { id: "ops_mia", name: "Mia Chen", role: "Site Reliability Engineer", department: "Platform", avatarInitials: "MC" }
+                    ]},
+                     { id: "mgr_platform_tools", name: "Zoe Barnes", role: "Platform Tools Manager", department: "Platform", avatarInitials: "ZB", reports: [
+                        { id: "eng_zoe_1", name: "Noah Lee", role: "Software Engineer, Tools", department: "Platform", avatarInitials: "NL" }
+                     ]} // Zoe has 1 report - potential for generalization
+                ]}
+            ]},
+            { id: "vp_revenue", name: "Maria Rodriguez", role: "VP, Revenue", department: "Revenue", avatarInitials: "MR", reports: [
+                { id: "dir_sales", name: "Kenji Tanaka", role: "Director, Global Sales", department: "Sales", avatarInitials: "KT", reports: [
+                    { id: "mgr_sales_na", name: "Olivia Green", role: "Sales Manager, North America", department: "Sales", avatarInitials: "OG", reports: [
+                        { id: "sales_sam", name: "Samuel Cho", role: "Account Executive", department: "Sales", avatarInitials: "SC" },
+                        { id: "sales_taylor", name: "Taylor Bell", role: "Account Executive", department: "Sales", avatarInitials: "TB" }
+                    ]},
+                    { id: "mgr_sales_eu", name: "Pierre Dubois", role: "Sales Manager, Europe", department: "Sales", avatarInitials: "PD", reports: [] } // Pierre has 0 reports
+                ]},
+                { id: "dir_marketing", name: "Sofia Rossi", role: "Director, Marketing", department: "Marketing", avatarInitials: "SR", reports: [
+                    { id: "mgr_mktg_digital", name: "William Johnson", role: "Digital Marketing Manager", department: "Marketing", avatarInitials: "WJ", reports: [
+                        { id: "mktg_ava", name: "Ava Kim", role: "Marketing Specialist", department: "Marketing", avatarInitials: "AK" }
+                        // William has 1 report
+                    ]}
+                ]}
+            ]},
+            { id: "vp_people", name: "Raj Patel", role: "VP, People Operations", department: "Human Resources", avatarInitials: "RP", reports: [
+                 { id: "dir_hrbp", name: "Isabelle Moreau", role: "Director, HR Business Partners", department: "Human Resources", avatarInitials: "IM", reports: [
+                    {id: "hrbp_emma", name: "Emma Garcia", role: "Senior HRBP", department: "Human Resources", avatarInitials: "EG"}
+                 ]} // Isabelle has 1 report
+            ]}
+        ]
+    };
+
+    function renderOrgChartUpdated(node, parentElement, isAnonymized, kDegree) {
         const listItem = document.createElement('li');
-        let nodeRole = node.role; // Use a mutable variable for role
-        let content = `<span class="employee-node">${node.name}</span> <span class="employee-role">(${nodeRole})</span>`;
-        let numReports = node.reports ? node.reports.length : 0; let displayNumReports = String(numReports); let generalized = false;
-        if (isAnonymized && node.reports) {
-            if (numReports === 1 && kDegree > 1) { displayNumReports = "1-2 reports"; generalized = true; }
-            else if (numReports === 0 && kDegree > 1 && nodeRole.toLowerCase().includes("manager")) { displayNumReports = "0-1 reports"; generalized = true; }
-            if (nodeRole === "Platform Manager" && numReports === 1) { nodeRole = "Technical Manager"; generalized = true; content = `<span class="employee-node">${node.name}</span> <span class="employee-role">(${nodeRole})</span>`; }
+        
+        const card = document.createElement('div');
+        card.className = 'employee-card-updated';
+        if (node.id === 'ceo') { // Special case for CEO to not have a line above it
+            card.style.marginTop = '10px';
         }
-        if (node.reports) { content += ` <span class="report-count">[Reports: ${displayNumReports}]</span>`; }
-        if(generalized) { listItem.classList.add('generalized'); }
-        listItem.innerHTML = content; parentElement.appendChild(listItem);
-        if (node.reports && node.reports.length > 0) { const subList = document.createElement('ul'); listItem.appendChild(subList); node.reports.forEach(report => renderOrgChart(report, subList, isAnonymized, kDegree)); }
+
+        let nodeRole = node.role;
+        let nodeDepartment = node.department;
+        let numReports = node.reports ? node.reports.length : 0;
+        let displayNumReports = String(numReports);
+        let generalized = false;
+
+        if (isAnonymized) {
+            // Illustrative generalization for report counts
+            if (node.reports) { // Only managers/leads can have report counts generalized
+                if (numReports === 1 && kDegree > 1) { displayNumReports = "1-2 reports"; generalized = true; }
+                else if (numReports === 0 && kDegree > 1 && (nodeRole.toLowerCase().includes("manager") || nodeRole.toLowerCase().includes("director"))) { displayNumReports = "0-1 reports"; generalized = true; }
+                // Add more bucketing rules if needed e.g. 2-3, 4-5 etc.
+            }
+
+            // Illustrative role generalization for specific, potentially unique roles
+            if (node.id === "mgr_platform_tools" && numReports === 1) { // Zoe Barnes
+                nodeRole = "Technical Team Lead"; generalized = true;
+            }
+            if (node.id === "dir_hrbp" && numReports === 1) { // Isabelle Moreau
+                 nodeRole = "Senior HR Lead"; generalized = true;
+            }
+             if (node.id === "mgr_mktg_digital" && numReports === 1) { // William Johnson
+                 nodeRole = "Marketing Team Lead"; generalized = true;
+            }
+            if (node.id === "mgr_sales_eu" && numReports === 0) { // Pierre Dubois
+                // Could generalize if being a Sales Manager with 0 reports is too rare for kDegree
+                // For now, let's assume his title is common enough.
+            }
+            if (generalized) {
+                card.classList.add('generalized-node');
+            }
+        }
+        
+        card.innerHTML = `
+            <div class="avatar">${node.avatarInitials || '?'}</div>
+            <div class="name">${node.name}</div>
+            <div class="role">${nodeRole}</div>
+            <div class="department">${nodeDepartment}</div>
+            ${node.reports ? `<div class="report-count-updated">Reports: ${displayNumReports}</div>` : ''}
+        `;
+        listItem.appendChild(card);
+        parentElement.appendChild(listItem);
+
+        if (node.reports && node.reports.length > 0) {
+            const subList = document.createElement('ul');
+            listItem.appendChild(subList);
+            node.reports.forEach(report => renderOrgChartUpdated(report, subList, isAnonymized, kDegree));
+        }
     }
-    function runGraphPrivacyDemo() {
-        const kDegree = parseInt(document.getElementById('graph_minDegreeK').value);
-        document.getElementById('graph_status').textContent = `Applying graph anonymization (illustrative k-degree for report counts: ${kDegree})...`;
-        const originalChartContainer = document.getElementById('graph_originalOrgChart'); originalChartContainer.innerHTML = '<ul></ul>';
-        renderOrgChart(JSON.parse(JSON.stringify(graph_orgData)), originalChartContainer.firstChild, false, kDegree);
-        const anonymizedChartContainer = document.getElementById('graph_anonymizedOrgChart'); anonymizedChartContainer.innerHTML = '<ul></ul>';
-        renderOrgChart(JSON.parse(JSON.stringify(graph_orgData)), anonymizedChartContainer.firstChild, true, kDegree);
-        document.getElementById('graph_status').textContent = `Graph anonymization applied. Generalized items are highlighted.`;
+
+    function runGraphPrivacyDemoUpdated() {
+        const kDegreeInput = document.getElementById('graph_minDegreeK_updated');
+        if (!kDegreeInput) {
+            console.error("graph_minDegreeK_updated input not found");
+            return;
+        }
+        const kDegree = parseInt(kDegreeInput.value);
+        
+        const statusSpan = document.getElementById('graph_status_updated');
+        if(statusSpan) statusSpan.textContent = `Applying graph anonymization (illustrative k-degree for report counts: ${kDegree})...`;
+
+        const originalChartContainer = document.getElementById('graph_originalOrgChart_updated');
+        if (originalChartContainer) {
+            originalChartContainer.innerHTML = '<ul></ul>'; // Root list for the chart
+            renderOrgChartUpdated(JSON.parse(JSON.stringify(expanded_graph_orgData)), originalChartContainer.firstChild, false, kDegree);
+        } else {
+            console.error("graph_originalOrgChart_updated container not found");
+        }
+        
+
+        const anonymizedChartContainer = document.getElementById('graph_anonymizedOrgChart_updated');
+        if (anonymizedChartContainer) {
+            anonymizedChartContainer.innerHTML = '<ul></ul>'; // Root list for the chart
+            renderOrgChartUpdated(JSON.parse(JSON.stringify(expanded_graph_orgData)), anonymizedChartContainer.firstChild, true, kDegree);
+        } else {
+            console.error("graph_anonymizedOrgChart_updated container not found");
+        }
+        
+        if(statusSpan) statusSpan.textContent = `Graph anonymization applied. Generalized items are highlighted.`;
     }
+
 
     // --- Initial Setup & Navigation ---
     document.addEventListener('DOMContentLoaded', () => {
@@ -1033,7 +1299,7 @@
         populateTable('tclose_originalDataTable', tclose_sampleData, tclose_columns); runTClosenessDemo();
         // k-map is user-driven, no initial table data beyond headers from JS
         populateDPTable(); runDPDemo();
-        runGraphPrivacyDemo();
+        runGraphPrivacyDemoUpdated();
 
 
         const hash = window.location.hash.substring(1);
