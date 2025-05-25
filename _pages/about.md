@@ -34,41 +34,37 @@ Despite our best efforts, the product didn’t achieve market fit. Still, it was
 
 🔷 *[SHAPE](https://shapepowered.com/)* – HR Intelligence Platform (2017–Present)
 
-SHAPE began as a modern culture and engagement survey tool, asking deep questions on:
+SHAPE began as an advanced survey tool, asking deep questions on:
 
-Workplace culture
+* Workplace culture
 
-Manager-employee relationships
+* Manager-employee relationships
 
-Peer dynamics
+* Peer dynamics
 
-It later evolved into a comprehensive HR platform that:
+* Business essentials and work environment
 
-Mapped organizational hierarchies
 
-Supported multiple user roles (employees, managers, executives)
+SHAPE rapidly evolved into a comprehensive HR intelligence platform. Its key capabilities include:
+*   **Organizational Hierarchy Mapping:** Visualizing complex company structures.
+*   **Role-Based Access & Reporting:** Tailored dashboards and insights for employees, managers, and executives.
+*   **Complex Structure Management:** Supporting multi-layered national and international organizations (e.g., Toyota Pakistan → Regional → Toyota Japan) while maintaining precise reporting lines and data aggregation.
 
-Generated customized reports per role
+I played a pivotal role across the entire product lifecycle, contributing to technical development, UX/UI design, and strategic product direction.
 
-Supported complex org structures (e.g., Toyota Pakistan → Regional → Toyota Japan), while preserving reporting lines across layers
+🧠 **My Key Contributions to SHAPE:**
 
-I contributed across the stack—from technical development to UX/UI design, and deeply into product strategy.
+**Privacy-Centric Algorithms:** Developed novel mathematical approaches to ensure employee anonymity in survey data.
+👉 *[Privacy Demo](https://razahashmi.github.io/files/privacy_demo.html#intro)*. 
 
-🧠 My Key Contributions:
+**State of the art scoring algorith:** Designed and implemented proprietary scoring systems for nuanced survey analysis.
 
-Privacy-first algorithms for protecting employee identity.
+**Dynamic Onboarding & Org Mapping:** Created intuitive user flows for employees to define team structures, reporting lines, and map organizational hierarchies.
 
-Custom scoring methodologies for surveys.
+**Comprehensive Admin Panel:** Built robust administrative tools for managing company metadata, survey configurations, user accounts, and system settings.
 
-Dynamic onboarding flows to map teams, managers, and org structure.
+ **Multi-Level Reporting Architecture:** Engineered systems for identity inheritance and aggregated/disaggregated reporting across complex conglomerate structures.
 
-Admin panels for managing: Company metadata, Survey configuration, User management
-
-Designed systems for multi-level reporting and identity inheritance for conglomerate clients.
-
-👉 *[Privacy Demo](https://razahashmi.github.io/files/privacy_demo.html#graph-privacy)*. 
-
-This demo highlights the key insights i used to protect the privacy of participants in the survey.
 
 <h1> News </h1>
 
