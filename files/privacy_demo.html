@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Anonymity Techniques Demo - Razahashmi</title>
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-color: #0056b3; /* Deep blue */
+            --secondary-color: #007bff; /* Bright blue */
+            --accent-color: #00c6ff; /* Lighter blue for accents */
+            --text-color: #333;
+            --bg-color: #f4f7f6; /* Light grayish green */
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --highlight-bg: #e9ecef; /* Light grey for table headers, etc. */
+            --suppressed-color: #6c757d; /* Grey for suppressed text */
+            --generalized-bg: #fff3cd; /* Light yellow for generalized */
+            --risk-bg: #f8d7da; /* Light red for risky cells */
+            --risk-text: #721c24;
+            --success-bg: #d4edda; /* Light green for success/innovation */
+            --success-text: #155724;
+            --font-sans-serif: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        }
+
+        body {
+            font-family: var(--font-sans-serif);
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 12px 25px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .navbar li {
+            margin-right: 10px; /* Reduced margin */
+            margin-bottom: 5px; /* For wrapping */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px; /* Increased padding */
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        .navbar a:hover, .navbar a.active {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- Main Container & Sections --- */
+        .container {
+            max-width: 1100px; /* Slightly wider */
+            margin: 25px auto;
+            padding: 20px 30px; /* More padding */
+            background-color: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .section {
+            display: none;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 25px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 2.2em;
+        }
+        h2 {
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        p { margin-bottom: 1em; }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 10px; /* Increased padding */
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        td.highlight { background-color: var(--highlight-bg); }
+        td.suppressed, .suppressed {
+            color: var(--suppressed-color) !important;
+            font-style: italic;
+            background-color: #f8f9fa !important;
+        }
+        td.generalized, .generalized {
+            background-color: var(--generalized-bg) !important;
+            border-left: 3px solid #ffda6a;
+        }
+        td.risky-cell, tr.risky-row {
+            background-color: var(--risk-bg) !important;
+            color: var(--risk-text) !important;
+        }
+        tr.risky-row td { font-weight: 500; }
+
+        /* --- Controls & Forms --- */
+        .controls {
+            margin-bottom: 25px;
+            padding: 18px;
+            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 15px;
+            align-items: center;
+        }
+        .controls label {
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        .controls input[type="number"], .controls input[type="text"], .controls select {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 0.95em;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+        }
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(0px);
+        }
+
+        /* --- Explanations & Highlights --- */
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e9f5ff; /* Light blueish */
+            border-radius: 6px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        .explanation ul { padding-left: 20px; }
+        .explanation li { margin-bottom: 0.5em; }
+
+        .innovation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-text);
+            color: var(--success-text);
+            border-radius: 6px;
+            border-left: 5px solid var(--success-text);
+        }
+        .innovation strong { color: #0f5132; } /* Darker green for strong text */
+
+        /* --- Layout & Specific Demo Elements --- */
+        .data-view {
+            display: flex;
+            flex-wrap: wrap; /* Allow tables to wrap on smaller screens */
+            gap: 25px;
+            margin-top: 15px;
+        }
+        .data-table-container {
+            flex: 1;
+            min-width: 300px; /* Ensure tables don't get too squished */
+        }
+        .code-block {
+            background-color: #282c34; /* Darker for code */
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: var(--font-monospace);
+            white-space: pre-wrap;
+            font-size: 0.9em;
+            margin-top:10px;
+            border: 1px solid #444;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 600px; /* Wider charts */
+            margin: 15px auto;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            background-color:#fdfdfd;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .bar { /* For DP and T-Closeness charts */
+            background-color: var(--secondary-color);
+            margin: 2px;
+            display: inline-block;
+            color: white;
+            font-size: 0.75em;
+            text-align: center;
+            vertical-align: bottom;
+            border-radius: 3px 3px 0 0;
+            padding: 0 3px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+        }
+        #dp_resultVisualization .bar { height: 25px !important; line-height:25px !important; } /* fixed height for DP bars */
+        #tclose_overallDistributionChart .bar, #tclose_groupDistributionChart .bar { width: 55px !important; } /* fixed width for t-closeness bars */
+
+        /* Org Chart Specific Styles */
+        .org-chart-container {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            background-color: #fcfdff; /* Lighter background for org chart */
+            border-radius: 6px;
+            min-height: 100px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        .org-chart-container ul {
+            list-style-type: none;
+            padding-left: 25px; /* Slightly more indent */
+            position: relative;
+        }
+        /* Basic connector lines (optional, can be enhanced with pseudo-elements) */
+        .org-chart-container ul ul::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border-color);
+        }
+        .org-chart-container li {
+            margin: 8px 0;
+            background-color: var(--container-bg);
+            padding: 10px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            position: relative; /* For connector lines */
+        }
+        .org-chart-container li::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 18px; /* Adjust vertical alignment */
+            width: 12px;
+            height: 1px;
+            background: var(--border-color);
+        }
+        .org-chart-container .employee-node {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .org-chart-container .employee-role {
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .org-chart-container .report-count {
+            color: var(--secondary-color);
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .org-chart-container .generalized {
+            background-color: var(--generalized-bg) !important;
+            border-left: 4px solid #ffc107; /* More prominent generalization marker */
+        }
+        #kmap_riskMapTable tbody tr:hover {
+            background-color: #f0f8ff; /* Light blue hover for kmap table */
+        }
+        #tclose_anonymizedDataTable tbody tr:hover {
+             background-color: #f0f8ff;
+        }
+        #tclose_anonymizedDataTable tbody tr.risky-row:hover {
+            background-color: #f5c6cb !important; /* Darker red on hover for risky t-close rows */
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <ul>
+        <li><a href="#intro" onclick="showSection('intro', this)">Introduction</a></li>
+        <li><a href="#k-anonymity" onclick="showSection('k-anonymity', this)">K-Anonymity</a></li>
+        <li><a href="#l-diversity" onclick="showSection('l-diversity', this)">L-Diversity</a></li>
+        <li><a href="#t-closeness" onclick="showSection('t-closeness', this)">T-Closeness</a></li>
+        <li><a href="#k-map" onclick="showSection('k-map', this)">K-Map Risk Vis.</a></li>
+        <li><a href="#dp" onclick="showSection('dp', this)">Differential Privacy</a></li>
+        <li><a href="#graph-privacy" onclick="showSection('graph-privacy', this)">Graph Privacy</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <h1>Interactive Privacy-Preserving Techniques Demo</h1>
+
+    <div id="intro" class="section">
+        <h2>Introduction</h2>
+        <p>This demonstration showcases various techniques I've implemented to protect participant anonymity in large-scale surveys. The scenarios are based on my experience with a survey involving approximately 1000 participants, over 150 questions, and rich demographic data including Date of Birth, Gender, Education, Country, Ethnicity, Department, Site, Job Title, Employment Status, Job Level, Tenure, and Annual Salary, plus organizational hierarchy information ("who do you work for," "who works for you").</p>
+        <p>Each section will illustrate a specific privacy-enhancing technique using fictional, representative data samples to explain its core principles and "best case" application in protecting anonymity while preserving data utility.</p>
+        <p><strong>Navigate using the menu above to explore each technique.</strong></p>
+    </div>
+
+    <div id="k-anonymity" class="section">
+        <!-- K-Anonymity Content START -->
+        <h2>1. K-Anonymity: Ensuring Group Indistinguishability</h2>
+        <p>K-Anonymity ensures that any individual in the dataset cannot be distinguished from at least 'k-1' other individuals based on their quasi-identifiers (QIs) – attributes that, in combination, could lead to re-identification. Common QIs from our survey include Department, Job Level, Site, and Age Range.</p>
+
+        <div class="controls">
+            <label for="kValue_kanon">Set K Value: </label>
+            <input type="number" id="kValue_kanon" value="3" min="2" style="width: 60px;">
+            <button onclick="runKAnonymizationDemo()">Apply K-Anonymity</button>
+        </div>
+
+        <div class="data-view">
+            <div class="data-table-container">
+                <h3>Original Fictional Data Sample</h3>
+                <p>(QIs: Department, Job Level, Site, Age Range. Sensitive: Engagement Score)</p>
+                <table id="kanon_originalDataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Department</th><th>Job Level</th><th>Site</th><th>Age Range</th><th>Engagement Score (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="data-table-container">
+                <h3>K-Anonymized Data (Illustrative)</h3>
+                <p><span id="kanon_status"></span></p>
+                <table id="kanon_anonymizedDataTable">
+                    <thead>
+                        <tr>
+                             <th>ID</th><th>Department</th><th>Job Level</th><th>Site</th><th>Age Range</th><th>Engagement Score (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h4>How K-Anonymity Was Applied (Best Case Scenario)</h4>
+            <p>In our survey system, when generating reports or allowing data exploration with filters (e.g., "Show me engagement scores for Senior Managers in the London Engineering department aged 30-39"), the system would first check if the resulting group met the pre-defined 'k' value. </p>
+            <p><strong>Best Case:</strong> If a query resulted in a group of 5 individuals who all matched on Department='Engineering', Job Level='Senior Manager', Site='London', and Age Range='30-39', and our 'k' was 3, this group would satisfy k-anonymity. Their (potentially different) engagement scores could be shown or aggregated.</p>
+            <p>If a group was smaller than 'k' (e.g., only 1 Director in HR at Site X aged 50-59), we applied:
+                <ul>
+                    <li><strong>Generalization:</strong> Broadening categories. E.g., 'Director' -> 'Senior Leadership', 'Site X' -> 'All Sites', '50-59' -> '50+'. The system had predefined hierarchies for generalization.</li>
+                    <li><strong>Suppression:</strong> In rare cases where generalization wasn't feasible without losing too much utility, the record(s) or specific sensitive values might be suppressed from that specific view.</li>
+                </ul>
+            This demo illustratively generalizes Job Level or Age Range if a (Department, Job Level, Site, Age Range) group is smaller than k. For simplicity, it suppresses the score if generalization is insufficient.
+            </p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I developed dynamic generalization hierarchies that adapted based on the data distribution and the QIs selected. For instance, 'Job Level' generalization might be more granular for large departments but broader for smaller ones to achieve 'k' with minimal information loss. We also provided users with feedback on why certain data might be generalized or suppressed, improving transparency.
+            </div>
+        </div>
+        <!-- K-Anonymity Content END -->
+    </div>
+
+    <div id="l-diversity" class="section">
+        <!-- L-Diversity Content START -->
+        <h2>2. L-Diversity: Ensuring Variety in Sensitive Attributes</h2>
+        <p>L-Diversity is a crucial extension of K-Anonymity. It addresses the risk that even if 'k' individuals are indistinguishable by their quasi-identifiers (QIs), they might all share the same sensitive attribute value, effectively revealing that information. L-Diversity mandates that for each QI group (equivalence class), there must be at least 'l' distinct values for the sensitive attribute.</p>
+        <p>For this demo, our QIs are Department, Job Level, and Site. The sensitive attribute is 'Annual Salary Band'.</p>
+
+        <div class="controls">
+            <label for="kValue_ldiv">Set K Value (QI groups): </label>
+            <input type="number" id="kValue_ldiv" value="2" min="2" style="width: 60px;">
+            <label for="lValue_ldiv">Set L Value (distinct sensitive): </label>
+            <input type="number" id="lValue_ldiv" value="2" min="2" style="width: 60px;">
+            <button onclick="runLDiversityDemo()">Apply L-Diversity</button>
+        </div>
+
+        <div class="data-view">
+            <div class="data-table-container">
+                <h3>Original Fictional Data Sample</h3>
+                <p>(QIs: Department, Job Level, Site. Sensitive: Salary Band)</p>
+                <table id="ldiv_originalDataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Department</th><th>Job Level</th><th>Site</th><th>Annual Salary Band (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="data-table-container">
+                <h3>L-Diverse Data (Illustrative)</h3>
+                <p><span id="ldiv_status"></span></p>
+                <table id="ldiv_anonymizedDataTable">
+                     <thead>
+                        <tr>
+                            <th>ID</th><th>Department</th><th>Job Level</th><th>Site</th><th>Annual Salary Band (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h4>How L-Diversity Was Applied (Best Case Scenario)</h4>
+            <p>After ensuring k-anonymity for a set of QIs, my system would then check each resulting equivalence class for l-diversity with respect to specified sensitive attributes like 'Annual Salary Band' or 'Performance Rating'.</p>
+            <p><strong>Best Case:</strong> Consider a group of 4 (k=4) 'Sales Managers' in 'New York'. If their salary bands were ['Low', 'Medium', 'Medium', 'High'], this group would satisfy l-diversity for l=3 (three distinct values: Low, Medium, High). If l was set to 2, it would also satisfy it.</p>
+            <p>If an equivalence class failed l-diversity (e.g., all 4 Sales Managers had a 'High' salary band, failing for l >= 2), the system would:
+                <ul>
+                    <li><strong>Further Generalize QIs:</strong> Try to merge the non-diverse group with other groups by generalizing QIs (e.g., 'Sales Manager' -> 'Managerial Staff', or 'New York' -> 'All US Sites') until the new, larger group satisfied l-diversity.</li>
+                    <li><strong>Suppression:</strong> If further generalization was not possible without excessive information loss, the sensitive data for that group, or sometimes the entire group, might be suppressed for that particular query or report. This demo primarily illustrates suppression for simplicity if a group fails l-diversity after initial k-grouping.</li>
+                </ul>
+            </p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I implemented an 'adaptive l-diversity' mechanism. For highly sensitive attributes (like salary), a higher 'l' value could be enforced. The system also prioritized generalization strategies that were most effective at increasing diversity for the target sensitive attribute, minimizing overall data distortion. For example, it might try to merge groups by generalizing a QI known to correlate less with the sensitive attribute first.
+            </div>
+        </div>
+        <!-- L-Diversity Content END -->
+    </div>
+
+    <div id="t-closeness" class="section">
+        <!-- T-Closeness Content START -->
+        <h2>3. T-Closeness: Matching Sensitive Attribute Distributions</h2>
+        <p>T-Closeness enhances L-Diversity by requiring that the distribution of a sensitive attribute within any QI group (equivalence class) is "close" to its distribution in the overall dataset. This prevents inference attacks based on skewed distributions within a group, even if it's l-diverse. The "closeness" is measured by a distance metric not exceeding a threshold 't'.</p>
+        <p>For this demo, QIs are Department and Site. The sensitive attribute is 'Salary Satisfaction' (Low, Medium, High). We'll use a simplified visual check for distribution similarity.</p>
+
+        <div class="controls">
+            <label for="kValue_tclose">Set K Value (QI groups): </label>
+            <input type="number" id="kValue_tclose" value="3" min="2" style="width: 60px;">
+            <label for="tValue_tclose">Max Deviation 't' (0.05-1.0): </label>
+            <input type="number" id="tValue_tclose" value="0.2" min="0.05" max="1" step="0.05" style="width: 70px;">
+            <button onclick="runTClosenessDemo()">Apply T-Closeness</button>
+        </div>
+
+        <div class="data-view">
+            <div class="data-table-container">
+                <h3>Original Fictional Data Sample</h3>
+                <p>(QIs: Department, Site. Sensitive: Salary Satisfaction)</p>
+                <table id="tclose_originalDataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Department</th><th>Site</th><th>Salary Satisfaction (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="data-table-container">
+                <h3>T-Close Data (Illustrative)</h3>
+                <p><span id="tclose_status"></span></p>
+                <table id="tclose_anonymizedDataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Department</th><th>Site</th><th>Salary Satisfaction (Sensitive)</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <h3>Overall Distribution of 'Salary Satisfaction' (Entire Dataset)</h3>
+        <div id="tclose_overallDistributionChart" class="chart-container"></div>
+
+        <h3>Distribution within Selected QI Group (click red row in table above)</h3>
+        <p id="tclose_groupDistribution_label">Select a highlighted (red) QI group from the anonymized table to see its distribution.</p>
+        <div id="tclose_groupDistributionChart" class="chart-container" style="min-height: 80px;"></div>
+
+
+        <div class="explanation">
+            <h4>How T-Closeness Was Applied (Best Case Scenario)</h4>
+            <p>After achieving k-anonymity and l-diversity, my system would further analyze equivalence classes for t-closeness with respect to critical sensitive attributes. The goal was to ensure that the distribution of, say, 'Employee Engagement Scores' or 'Salary Satisfaction Levels' within any identifiable subgroup closely mirrored the overall company distribution.</p>
+            <p><strong>Best Case:</strong> Imagine an equivalence class of 5 'Engineers in London'. If the overall company has 30% 'High', 50% 'Medium', and 20% 'Low' Salary Satisfaction, this group of 5 engineers would ideally also reflect a similar distribution (e.g., 1 High, 3 Medium, 1 Low, which is 20%H, 60%M, 20%L). If the chosen 't' (e.g., max 0.1 deviation per category) was met, the group is t-close.</p>
+            <p>If a group failed t-closeness (e.g., all 5 engineers reported 'Low' satisfaction, which is very different from the overall distribution), the system would employ:
+                <ul>
+                    <li><strong>Targeted Generalization/Merging:</strong> Attempting to merge the non-t-close group with other groups that could balance out its distribution, ideally by generalizing QIs that are less correlated with the sensitive attribute.</li>
+                    <li><strong>Suppression:</strong> As a last resort for highly skewed groups where generalization would destroy too much utility, the sensitive data for that group might be suppressed. This demo primarily illustrates suppression for groups failing t-closeness.</li>
+                </ul>
+            </p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I developed a method to calculate an 'impact score' for t-closeness failures, which helped prioritize which QI to generalize to most effectively restore t-closeness with minimal data loss. We also used different 't' thresholds for different sensitive attributes based on their perceived sensitivity and baseline distribution variance. For attributes with naturally high variance, a slightly larger 't' might be acceptable.
+            </div>
+        </div>
+        <!-- T-Closeness Content END -->
+    </div>
+
+    <div id="k-map" class="section">
+        <!-- K-Map Content START -->
+        <h2>4. K-Map Risk Visualization: Identifying High-Risk Data Cells</h2>
+        <p>"K-Map" (in this context, referring to a risk map based on k-anonymity principles) helps visualize how combinations of Quasi-Identifiers (QIs) distribute individuals across a dataset. It identifies "cells" or unique QI combinations that contain very few individuals, making those individuals potentially re-identifiable. This step is crucial for pre-anonymization risk assessment.</p>
+        <p>Select up to 3 QIs from the survey data to generate a risk map. The map will show unique combinations and the count of individuals in each. Cells below the 'Risk Threshold' are highlighted.</p>
+
+        <div class="controls">
+            <div style="flex-basis: 100%; margin-bottom:10px;">
+                <label>Select QIs (1 to 3):</label><br>
+                <input type="checkbox" id="kmap_qi_dept" value="department" checked> <label for="kmap_qi_dept" style="margin-right:10px; font-weight:normal;">Department</label>
+                <input type="checkbox" id="kmap_qi_jlevel" value="jobLevel" checked> <label for="kmap_qi_jlevel" style="margin-right:10px; font-weight:normal;">Job Level</label>
+                <input type="checkbox" id="kmap_qi_site" value="site"> <label for="kmap_qi_site" style="margin-right:10px; font-weight:normal;">Site</label>
+                <input type="checkbox" id="kmap_qi_age" value="ageRange"> <label for="kmap_qi_age" style="margin-right:10px; font-weight:normal;">Age Range</label>
+                <input type="checkbox" id="kmap_qi_edu" value="education"> <label for="kmap_qi_edu" style="font-weight:normal;">Education</label>
+            </div>
+            <div>
+                <label for="kmap_riskThreshold">Risk Threshold (Min count): </label>
+                <input type="number" id="kmap_riskThreshold" value="3" min="1" style="width: 60px;">
+            </div>
+            <button onclick="runKMapDemo()">Generate Risk Map</button>
+        </div>
+
+        <div id="kmap_errorMessage" style="color:var(--risk-text); margin-top:10px; font-weight:bold;"></div>
+
+        <h3>Risk Map: Unique QI Combinations and Counts</h3>
+        <p><span id="kmap_status"></span></p>
+        <div class="data-table-container" style="max-height: 450px; overflow-y: auto;">
+            <table id="kmap_riskMapTable">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="explanation">
+            <h4>How K-Map Risk Visualization Was Used</h4>
+            <p>Before applying anonymization techniques like generalization or suppression, it was vital to understand the inherent re-identification risks in the raw data. I used a "k-map" approach (conceptually) to analyze the dataset by selecting various combinations of QIs (e.g., Department + Job Title + Country + Age Bracket).</p>
+            <p>The system would then compute how many unique combinations of these selected QIs existed and, crucially, how many individuals fell into each unique combination (each "cell" in the map). </p>
+            <p><strong>Best Case Identification:</strong> This process would clearly highlight, for example, that while "Engineers in London" might be a large group, "Female Directors in the Berlin Sales office with a PhD" might only have 1 individual. This '1' is a high-risk cell. The visualization would flag all cells with counts below a defined minimum 'k' (the risk threshold). This directly informed which QIs or specific values needed the most aggressive generalization or where data might need to be suppressed to achieve the target k-anonymity across the board.</p>
+            <p>This interactive demo lets you select QIs and see a simplified version of this risk map. Cells with counts below your chosen threshold are highlighted as risky.</p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I developed an automated risk-profiling tool that could iterate through many common QI combinations, generating these "k-maps" and producing a prioritized list of the riskiest combinations across the entire 1000-participant dataset. This allowed us to proactively address the most significant vulnerabilities first and tailor generalization hierarchies more effectively, rather than applying blanket rules. The tool also suggested potential generalization strategies based on the identified risky cells.
+            </div>
+        </div>
+        <!-- K-Map Content END -->
+    </div>
+
+    <div id="dp" class="section">
+        <!-- Differential Privacy Content START -->
+        <h2>5. Differential Privacy: Formal Guarantees via Calibrated Noise</h2>
+        <p>Differential Privacy (DP) provides a strong, mathematical definition of privacy. It ensures that the outcome of any analysis is essentially the same, whether or not any single individual's data is included in the computation. This is typically achieved by adding a carefully calibrated amount of random noise to the true result of a query (e.g., a count, sum, or average).</p>
+        <p>The amount of noise is controlled by a "privacy budget" parameter, epsilon (ε). Smaller epsilon values mean more noise and thus stronger privacy guarantees, but potentially less accurate results.</p>
+        <p>This demo will calculate the average "Hours worked from home last week" from a sample. You can adjust epsilon to see its effect on the noise added to the true average.</p>
+
+        <div class="controls">
+            <label for="dp_epsilon">Set Epsilon (ε) (0.01-5.0): </label>
+            <input type="number" id="dp_epsilon" value="0.5" min="0.01" max="5" step="0.01" style="width: 70px;">
+            <button onclick="runDPDemo()">Calculate DP Average</button>
+            <span style="font-size:0.9em; margin-left:10px;">(Lower ε = More Privacy, More Noise)</span>
+        </div>
+
+        <h3>Fictional Data Sample: Hours Worked from Home Last Week</h3>
+        <div class="data-table-container" style="max-height: 250px; overflow-y: auto;">
+            <table id="dp_dataTable">
+                <thead><tr><th>Participant ID</th><th>Hours From Home</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <div style="margin-top:20px;">
+            <h3>Query Results: Average Hours From Home</h3>
+            <p><strong>True Average:</strong> <span id="dp_trueAverage" style="font-weight:bold;">-</span></p>
+            <p><strong>Differentially Private Average (True + Noise):</strong> <span id="dp_noisyAverage" style="font-weight:bold; color:var(--secondary-color); font-size:1.1em;">-</span></p>
+            <p><small>Note: The DP Average will vary slightly each time you calculate due to random noise addition.</small></p>
+            <div id="dp_resultVisualization" class="chart-container" style="padding:20px; background-color:#f8f9fa; border-radius:5px; text-align:left; min-height:60px;">
+                <!-- Visualization of true vs noisy -->
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h4>How Differential Privacy Was Applied (Best Case Scenario)</h4>
+            <p>In my work, particularly when generating aggregate statistics for large groups or for public release from the 1000-participant survey, I designed systems to incorporate Differential Privacy. This was crucial for answering questions like "What is the average number of training hours completed by employees in the Sales department?" or "What proportion of employees use benefit X?"</p>
+            <p><strong>Best Case Application:</strong>
+                <ol>
+                    <li>A query for an aggregate statistic (e.g., average annual salary for a large department) would be submitted.</li>
+                    <li>The system calculates the true average.</li>
+                    <li>It then determines the "sensitivity" of the query (how much the result could change if one person's data was removed/altered). For an average, this relates to the range of possible salary values.</li>
+                    <li>Using a pre-defined epsilon (ε) from the allocated privacy budget, the system generates noise from a Laplace distribution (scaled by sensitivity and epsilon) and adds it to the true average.</li>
+                    <li>The resulting noisy average is released.</li>
+                </ol>
+            This ensures that an observer seeing the released average cannot confidently infer whether any specific individual (e.g., the CEO with a very high salary) was included in that department's average calculation for that query. The key is that the noise masks individual contributions.
+            </p>
+            <p>This demo uses a simplified Laplace noise addition for an average. The "sensitivity" is assumed based on the range of data for simplicity.</p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I developed a privacy budget management system that tracked epsilon expenditure across multiple queries and datasets. This allowed us to provide robust DP guarantees over time, even when analysts performed various exploratory queries. I also worked on techniques to optimize query sensitivity calculations for different types of survey questions (e.g., Likert scales, numerical inputs, categorical choices) to add the minimum necessary noise while still satisfying the DP definition.
+            </div>
+        </div>
+        <!-- Differential Privacy Content END -->
+    </div>
+
+    <div id="graph-privacy" class="section">
+        <!-- Graph Privacy Content START -->
+        <h2>6. Graph-Based Privacy: Anonymizing Organizational Structures</h2>
+        <p>Organizational hierarchy data ("who reports to whom") is a form of graph data. Individuals can sometimes be re-identified based on their unique position within this structure, such as having a unique number of direct reports or a very specific role in a small team. Graph-based privacy techniques aim to mitigate these risks.</p>
+        <p>This demo visualizes a small fictional org chart. We'll illustrate how structural properties (like the number of direct reports) can be anonymized to protect individuals.</p>
+
+        <div class="controls">
+            <label for="graph_minDegreeK">Min K for Report Count Groups (e.g., at least K managers in a count 'bucket'): </label>
+            <input type="number" id="graph_minDegreeK" value="2" min="1" style="width: 60px;">
+            <button onclick="runGraphPrivacyDemo()">Apply Graph Anonymization</button>
+        </div>
+
+        <div class="data-view" style="flex-direction: column;">
+            <div class="data-table-container"> <!-- Re-using class for consistent spacing -->
+                <h3>Original Fictional Org Chart</h3>
+                <div id="graph_originalOrgChart" class="org-chart-container"></div>
+            </div>
+            <div class="data-table-container" style="margin-top: 20px;">
+                <h3>Anonymized Org Chart (Illustrative)</h3>
+                <p><span id="graph_status"></span></p>
+                <div id="graph_anonymizedOrgChart" class="org-chart-container"></div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h4>How Graph-Based Privacy Was Applied (Best Case Scenario)</h4>
+            <p>The "who do you work for" and "who works for you" data from the 1000-participant survey formed a complex organizational graph. Simply removing names wasn't enough, as structural information could still identify people. For example: "the only VP with exactly 2 direct reports, one of whom is a Director with 7 reports."</p>
+            <p>My approach involved several layers:
+                <ul>
+                    <li><strong>Degree Anonymization (k-degree anonymity):</strong> Ensuring that for any given number of direct reports (degree), there were at least 'k' managers with that same degree, or their degree was generalized into a bucket (e.g., "1-3 reports", "4-7 reports"). This demo illustrates this by "bucketing" report counts.</li>
+                    <li><strong>Role/Attribute Generalization:</strong> If a role was too unique within a specific branch of the hierarchy (e.g., "Lead Data Privacy Officer for EU Operations"), it would be generalized (e.g., "Senior Compliance Officer").</li>
+                    <li><strong>Structural Anonymization (Conceptual):</strong> For more advanced protection, techniques like adding/removing carefully selected (false) edges or nodes can be used to break unique structural patterns, though this is highly complex. My work focused on practical degree and role generalization for our survey data.</li>
+                </ul>
+            <strong>Best Case:</strong> An analyst could query "average team size for Senior Managers" and get a useful, slightly generalized result (e.g., "average 5-8 reports") without being able to pinpoint a specific Senior Manager who might be the only one with exactly 6 reports. Unique roles in small teams would be shown with generalized titles.
+            </p>
+            <div class="innovation">
+                <strong>My Innovation Highlight:</strong> I developed a 'structural risk score' for each node in the hierarchy, considering its degree, the uniqueness of its role title within its department, and the size of its team relative to others. This score helped prioritize which parts of the org graph needed anonymization most urgently. We then applied iterative generalization (first to report counts, then to roles) until the risk scores for all nodes fell below a defined threshold, balancing privacy with the utility of the hierarchical data for analysis.
+            </div>
+        </div>
+        <!-- Graph Privacy Content END -->
+    </div>
+
+</div>
+
+<script>
+    // --- Shared Utility Functions ---
+    function populateTable(tableId, data, columns, options = {}) {
+        const tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = ""; // Clear existing rows
+        
+        const k_groups_for_tclose_highlight = options.k_groups_for_tclose_highlight || null;
+        const tclose_qis_for_highlight = options.tclose_qis_for_highlight || [];
+        const tclose_sensitive_attr_for_highlight = options.tclose_sensitive_attr_for_highlight || '';
+
+
+        data.forEach(row => {
+            const newRow = tableBody.insertRow();
+            
+            // Specific for t-closeness highlighting
+            if (options.isTcloseTable && row.failedTCloseness) {
+                newRow.classList.add('risky-row'); // Highlight the whole row
+                 newRow.style.cursor = "pointer";
+                 newRow.title = "Click to see this group's distribution";
+                 newRow.onclick = () => {
+                    const groupKey = tclose_qis_for_highlight.map(qi => row[qi]).join('|');
+                    const groupData = k_groups_for_tclose_highlight ? k_groups_for_tclose_highlight[groupKey] : null;
+                    
+                    if(groupData && groupData.length >= parseInt(document.getElementById('kValue_tclose').value)){
+                        const dist = calculateDistribution(groupData, tclose_sensitive_attr_for_highlight);
+                        displayDistributionChart('tclose_groupDistributionChart', dist, `Distribution for Group: ${groupKey.replace(/\|/g, ' - ')}`);
+                        document.getElementById('tclose_groupDistribution_label').textContent = `Distribution for QI Group: ${groupKey.replace(/\|/g, ' - ')} (Failed t-closeness)`;
+                    } else {
+                         document.getElementById('tclose_groupDistributionChart').innerHTML = "<p>This group did not meet k-anonymity or was not found.</p>";
+                         document.getElementById('tclose_groupDistribution_label').textContent = "Group did not meet k-anonymity or data missing.";
+                    }
+                };
+            } else {
+                newRow.onclick = null; // Remove click handler if not failing
+                newRow.style.cursor = "default";
+                newRow.title = "";
+            }
+
+
+            columns.forEach(col => {
+                const cell = newRow.insertCell();
+                let cellValue = row[col.key];
+
+                if (options.isKanonTable && row.qi_group) { // For k-anonymity if data is nested
+                     cellValue = row.qi_group[col.key] !== undefined ? row.qi_group[col.key] : row[col.key];
+                }
+                
+                cell.textContent = cellValue !== undefined ? cellValue : '';
+
+
+                if (row.isSuppressed && col.isSensitive) {
+                    cell.textContent = '*';
+                    cell.classList.add('suppressed');
+                }
+                if (row.generalizedCols && row.generalizedCols.includes(col.key)) {
+                     cell.classList.add('generalized');
+                }
+            });
+        });
+    }
+
+    function showSection(sectionId, navLink) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+        }
+
+
+        const navLinks = document.querySelectorAll('.navbar a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        if (navLink) {
+            navLink.classList.add('active');
+        }
+        window.scrollTo(0, 0); // Scroll to top of page
+    }
+    
+    // --- K-Anonymity Demo ---
+    const kanon_sampleData = [
+        { id: 1, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "30-39", engagementScore: 4 },
+        { id: 2, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "30-39", engagementScore: 5 },
+        { id: 3, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "30-39", engagementScore: 3 },
+        { id: 4, department: "Sales", jobLevel: "Manager", site: "New York", ageRange: "40-49", engagementScore: 5 },
+        { id: 5, department: "Sales", jobLevel: "Manager", site: "New York", ageRange: "40-49", engagementScore: 4 },
+        { id: 6, department: "HR", jobLevel: "Director", site: "London", ageRange: "50-59", engagementScore: 5 },
+        { id: 7, department: "HR", jobLevel: "Specialist", site: "London", ageRange: "30-39", engagementScore: 3 },
+        { id: 8, department: "HR", jobLevel: "Specialist", site: "London", ageRange: "30-39", engagementScore: 4 },
+        { id: 9, department: "Engineering", jobLevel: "SE I", site: "Berlin", ageRange: "20-29", engagementScore: 4 },
+        { id: 10, department: "Engineering", jobLevel: "SE I", site: "Berlin", ageRange: "20-29", engagementScore: 3 },
+        { id: 11, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "20-29", engagementScore: 4 },
+        { id: 12, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "20-29", engagementScore: 2 },
+        { id: 13, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "30-39", engagementScore: 3 }, 
+        { id: 14, department: "Engineering", jobLevel: "Manager", site: "London", ageRange: "40-49", engagementScore: 5},
+        { id: 15, department: "Engineering", jobLevel: "Manager", site: "London", ageRange: "40-49", engagementScore: 4},
+    ];
+    const kanon_columns = [
+        { key: 'id', label: 'ID'}, { key: 'department', label: 'Department'}, { key: 'jobLevel', label: 'Job Level'}, 
+        { key: 'site', label: 'Site'}, { key: 'ageRange', label: 'Age Range'}, { key: 'engagementScore', label: 'Engagement Score', isSensitive: true }
+    ];
+    function runKAnonymizationDemo() {
+        const k = parseInt(document.getElementById('kValue_kanon').value);
+        document.getElementById('kanon_status').textContent = `Applying k=${k}...`;
+        let anonymizedData = JSON.parse(JSON.stringify(kanon_sampleData));
+        const qis = ['department', 'jobLevel', 'site', 'ageRange'];
+        let groups = {};
+        anonymizedData.forEach(row => {
+            const groupKey = qis.map(qi => row[qi]).join('|');
+            if (!groups[groupKey]) groups[groupKey] = [];
+            groups[groupKey].push(row);
+        });
+        Object.values(groups).forEach(group => {
+            if (group.length < k) {
+                group.forEach(row => {
+                    row.generalizedCols = row.generalizedCols || [];
+                    if (["Director", "SE II", "Manager"].includes(row.jobLevel)) { row.jobLevel = "Senior/Lead Role"; row.generalizedCols.push('jobLevel'); } 
+                    else if (["Specialist", "SE I", "Rep"].includes(row.jobLevel)) { row.jobLevel = "Individual Contributor"; row.generalizedCols.push('jobLevel');}
+                });
+            }
+        });
+        groups = {}; // Re-group
+        anonymizedData.forEach(row => { const groupKey = qis.map(qi => row[qi]).join('|'); if (!groups[groupKey]) groups[groupKey] = []; groups[groupKey].push(row); });
+        Object.values(groups).forEach(group => {
+            if (group.length < k) {
+                group.forEach(row => {
+                    row.generalizedCols = row.generalizedCols || [];
+                    if (["20-29", "30-39"].includes(row.ageRange)) { row.ageRange = "20-39"; row.generalizedCols.push('ageRange'); } 
+                    else if (["40-49", "50-59"].includes(row.ageRange)) { row.ageRange = "40-59"; row.generalizedCols.push('ageRange'); }
+                });
+            }
+        });
+        groups = {}; // Final Re-group
+        anonymizedData.forEach(row => { const groupKey = qis.map(qi => row[qi]).join('|'); if (!groups[groupKey]) groups[groupKey] = []; groups[groupKey].push(row); });
+        Object.values(groups).forEach(group => { if (group.length < k) { group.forEach(row => row.isSuppressed = true); } });
+        populateTable('kanon_anonymizedDataTable', anonymizedData, kanon_columns, {isKanonTable: true});
+        document.getElementById('kanon_status').textContent = `K-Anonymity (k=${k}) applied. Check for generalized values or '*' (suppressed scores).`;
+    }
+
+    // --- L-Diversity Demo ---
+    const ldiv_sampleData = [
+        { id: 1, department: "Engineering", jobLevel: "SE II", site: "London", salaryBand: "Medium" }, { id: 2, department: "Engineering", jobLevel: "SE II", site: "London", salaryBand: "Medium" },
+        { id: 3, department: "Engineering", jobLevel: "SE II", site: "London", salaryBand: "Medium-High" }, { id: 4, department: "Sales", jobLevel: "Manager", site: "New York", salaryBand: "Medium" },
+        { id: 5, department: "Sales", jobLevel: "Manager", site: "New York", salaryBand: "High" }, { id: 6, department: "Sales", jobLevel: "Manager", site: "New York", salaryBand: "Medium-High" },
+        { id: 7, department: "HR", jobLevel: "Specialist", site: "London", salaryBand: "Low" }, { id: 8, department: "HR", jobLevel: "Specialist", site: "London", salaryBand: "Low" },
+        { id: 9, department: "Engineering", jobLevel: "SE I", site: "Berlin", salaryBand: "Low" }, { id: 10, department: "Engineering", jobLevel: "SE I", site: "Berlin", salaryBand: "Medium" },
+        { id: 11, department: "Engineering", jobLevel: "SE I", site: "Berlin", salaryBand: "Low" }, { id: 12, department: "Sales", jobLevel: "Rep", site: "New York", salaryBand: "Low" },
+        { id: 13, department: "Sales", jobLevel: "Rep", site: "New York", salaryBand: "Low" }, { id: 14, department: "Sales", jobLevel: "Rep", site: "New York", salaryBand: "Low" },
+        { id: 15, department: "Sales", jobLevel: "Manager", site: "New York", salaryBand: "High" }, { id: 16, department: "HR", jobLevel: "Specialist", site: "London", salaryBand: "Low-Medium" },
+    ];
+    const ldiv_columns = [
+        { key: 'id', label: 'ID'}, { key: 'department', label: 'Department'}, { key: 'jobLevel', label: 'Job Level'},
+        { key: 'site', label: 'Site'}, { key: 'salaryBand', label: 'Annual Salary Band', isSensitive: true }
+    ];
+    const ldiv_qis = ['department', 'jobLevel', 'site'];
+    const ldiv_sensitiveAttribute = 'salaryBand';
+    function runLDiversityDemo() {
+        const k = parseInt(document.getElementById('kValue_ldiv').value);
+        const l = parseInt(document.getElementById('lValue_ldiv').value);
+        document.getElementById('ldiv_status').textContent = `Applying k=${k}, l=${l}...`;
+        let anonymizedData = JSON.parse(JSON.stringify(ldiv_sampleData));
+        const k_groups = {};
+        anonymizedData.forEach(row => { const groupKey = ldiv_qis.map(qi => row[qi]).join('|'); if (!k_groups[groupKey]) k_groups[groupKey] = []; k_groups[groupKey].push(row); });
+        Object.values(k_groups).forEach(group => {
+            if (group.length < k) { group.forEach(row => row.isSuppressed = true); } 
+            else { const distinctSensitiveValues = new Set(group.map(row => row[ldiv_sensitiveAttribute])); if (distinctSensitiveValues.size < l) { group.forEach(row => row.isSuppressed = true); } else { group.forEach(row => row.isSuppressed = false); }}
+        });
+        populateTable('ldiv_anonymizedDataTable', anonymizedData, ldiv_columns);
+        document.getElementById('ldiv_status').textContent = `L-Diversity (k=${k}, l=${l}) applied. '*' indicates suppressed sensitive value.`;
+    }
+
+    // --- T-Closeness Demo ---
+    const tclose_sampleData = [
+        { id: 1, department: "Engineering", site: "London", satisfaction: "Medium" }, { id: 2, department: "Engineering", site: "London", satisfaction: "High" },
+        { id: 3, department: "Engineering", site: "London", satisfaction: "Low" }, { id: 4, department: "Engineering", site: "London", satisfaction: "Medium" },
+        { id: 5, department: "Sales", site: "New York", satisfaction: "High" }, { id: 6, department: "Sales", site: "New York", satisfaction: "High" },
+        { id: 7, department: "Sales", site: "New York", satisfaction: "Medium" }, { id: 8, department: "Sales", site: "New York", satisfaction: "High" },
+        { id: 9, department: "HR", site: "London", satisfaction: "Low" }, { id: 10, department: "HR", site: "London", satisfaction: "Low" }, { id: 11, department: "HR", site: "London", satisfaction: "Medium" },
+        { id: 12, department: "Engineering", site: "Berlin", satisfaction: "High" }, { id: 13, department: "Engineering", site: "Berlin", satisfaction: "Medium" },
+        { id: 14, department: "Sales", site: "London", satisfaction: "Low" }, { id: 15, department: "Sales", site: "London", satisfaction: "Medium" },
+        { id: 16, department: "Sales", site: "London", satisfaction: "High" }, { id: 17, department: "Sales", site: "London", satisfaction: "Medium" },
+    ];
+    const tclose_columns = [
+        { key: 'id', label: 'ID'}, { key: 'department', label: 'Department'}, { key: 'site', label: 'Site'},
+        { key: 'satisfaction', label: 'Salary Satisfaction', isSensitive: true }
+    ];
+    const tclose_qis = ['department', 'site'];
+    const tclose_sensitiveAttribute = 'satisfaction';
+    const tclose_sensitiveCategories = ["Low", "Medium", "High"];
+    let tclose_k_groups_for_highlight = {}; // To store groups for click handler
+
+    function calculateDistribution(dataArray, attribute) {
+        const dist = {}; tclose_sensitiveCategories.forEach(cat => dist[cat] = 0);
+        dataArray.forEach(row => { if (dist[row[attribute]] !== undefined) dist[row[attribute]]++; });
+        const total = dataArray.length; if (total === 0) return dist;
+        for (const cat in dist) dist[cat] = (dist[cat] / total); return dist;
+    }
+    function displayDistributionChart(containerId, distribution, title) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = `<strong>${title}</strong><br>`;
+        tclose_sensitiveCategories.forEach(cat => {
+            const proportion = distribution[cat] || 0; const barHeight = Math.max(5, proportion * 80); // Min height 5px, scale up to 80px
+            container.innerHTML += `<div style="display:inline-block; width:70px; text-align:center; margin-right:10px; vertical-align:bottom;">
+                <div class="bar" style="height:${barHeight}px; line-height:${barHeight}px;">${(proportion * 100).toFixed(0)}%</div><div>${cat}</div></div>`;
+        });
+        if (Object.values(distribution).every(v => v === 0) && containerId === "tclose_groupDistributionChart") { container.innerHTML += "<p>No data or group not meeting k.</p>"; }
+    }
+    function runTClosenessDemo() {
+        const k = parseInt(document.getElementById('kValue_tclose').value);
+        const t = parseFloat(document.getElementById('tValue_tclose').value);
+        document.getElementById('tclose_status').textContent = `Applying k=${k}, t=${t.toFixed(2)}...`;
+        let anonymizedData = JSON.parse(JSON.stringify(tclose_sampleData));
+        const overallDistribution = calculateDistribution(anonymizedData, tclose_sensitiveAttribute);
+        displayDistributionChart('tclose_overallDistributionChart', overallDistribution, "Overall Dataset Distribution");
+        document.getElementById('tclose_groupDistributionChart').innerHTML = "<p>Select a highlighted (red) QI group from the anonymized table to see its distribution.</p>";
+        document.getElementById('tclose_groupDistribution_label').textContent = "Select a highlighted (red) QI group from the anonymized table to see its distribution.";
+
+        tclose_k_groups_for_highlight = {}; // Reset for current run
+        anonymizedData.forEach(row => { const groupKey = tclose_qis.map(qi => row[qi]).join('|'); if (!tclose_k_groups_for_highlight[groupKey]) tclose_k_groups_for_highlight[groupKey] = []; tclose_k_groups_for_highlight[groupKey].push(row); });
+        Object.values(tclose_k_groups_for_highlight).forEach(group => {
+            if (group.length < k) { group.forEach(row => row.isSuppressed = true); } 
+            else {
+                const groupDistribution = calculateDistribution(group, tclose_sensitiveAttribute); let failsTCloseness = false;
+                for (const cat of tclose_sensitiveCategories) { if (Math.abs(groupDistribution[cat] - overallDistribution[cat]) > t) { failsTCloseness = true; break; } }
+                if (failsTCloseness) { group.forEach(row => { row.isSuppressed = true; row.failedTCloseness = true; }); } 
+                else { group.forEach(row => row.isSuppressed = false); }
+            }
+        });
+        populateTable('tclose_anonymizedDataTable', anonymizedData, tclose_columns, {
+            isTcloseTable: true, 
+            k_groups_for_tclose_highlight: tclose_k_groups_for_highlight,
+            tclose_qis_for_highlight: tclose_qis,
+            tclose_sensitive_attr_for_highlight: tclose_sensitiveAttribute
+        });
+        document.getElementById('tclose_status').textContent = `T-Closeness (k=${k}, t=${t.toFixed(2)}) applied. '*' indicates suppressed value. Red rows failed t-closeness (click to see distribution).`;
+    }
+
+    // --- K-Map Risk Visualization Demo ---
+    const kmap_fullSampleData = [
+        { id: 1, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "30-39", education: "Masters" }, { id: 2, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "30-39", education: "Masters" },
+        { id: 3, department: "Engineering", jobLevel: "SE II", site: "London", ageRange: "20-29", education: "Bachelors" }, { id: 4, department: "Sales", jobLevel: "Manager", site: "New York", ageRange: "40-49", education: "Masters" },
+        { id: 5, department: "Sales", jobLevel: "Manager", site: "New York", ageRange: "40-49", education: "Bachelors" }, { id: 6, department: "HR", jobLevel: "Director", site: "London", ageRange: "50-59", education: "PhD" },
+        { id: 7, department: "HR", jobLevel: "Specialist", site: "London", ageRange: "30-39", education: "Bachelors" }, { id: 8, department: "HR", jobLevel: "Specialist", site: "London", ageRange: "30-39", education: "Bachelors" },
+        { id: 9, department: "Engineering", jobLevel: "SE I", site: "Berlin", ageRange: "20-29", education: "Bachelors" }, { id: 10, department: "Engineering", jobLevel: "SE I", site: "Berlin", ageRange: "20-29", education: "Bachelors" },
+        { id: 11, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "20-29", education: "High School" }, { id: 12, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "20-29", education: "Bachelors" },
+        { id: 13, department: "Sales", jobLevel: "Rep", site: "New York", ageRange: "30-39", education: "Bachelors" }, { id: 14, department: "Engineering", jobLevel: "Manager", site: "London", ageRange: "40-49", education: "PhD"},
+        { id: 15, department: "Engineering", jobLevel: "Manager", site: "London", ageRange: "40-49", education: "Masters"}, { id: 16, department: "HR", jobLevel: "Specialist", site: "Berlin", ageRange: "40-49", education: "Masters"},
+        { id: 17, department: "Sales", jobLevel: "Manager", site: "Berlin", ageRange: "30-39", education: "Masters"}, { id: 18, department: "Engineering", jobLevel: "SE II", site: "New York", ageRange: "30-39", education: "Masters" },
+        { id: 19, department: "Engineering", jobLevel: "SE II", site: "New York", ageRange: "30-39", education: "Masters" }, { id: 20, department: "HR", jobLevel: "Director", site: "London", ageRange: "50-59", education: "PhD" },
+    ];
+    const kmap_availableQIs = [
+        { id: "kmap_qi_dept", value: "department", label: "Department" }, { id: "kmap_qi_jlevel", value: "jobLevel", label: "Job Level" },
+        { id: "kmap_qi_site", value: "site", label: "Site" }, { id: "kmap_qi_age", value: "ageRange", label: "Age Range" }, { id: "kmap_qi_edu", value: "education", label: "Education" }
+    ];
+    function runKMapDemo() {
+        const errorMessageDiv = document.getElementById('kmap_errorMessage'); errorMessageDiv.textContent = "";
+        const selectedQIs = kmap_availableQIs.filter(qiInfo => document.getElementById(qiInfo.id).checked).map(qiInfo => qiInfo.value);
+        if (selectedQIs.length === 0 || selectedQIs.length > 3) { errorMessageDiv.textContent = "Please select 1 to 3 QIs."; return; }
+        const riskThreshold = parseInt(document.getElementById('kmap_riskThreshold').value);
+        document.getElementById('kmap_status').textContent = `Generating risk map for QIs: ${selectedQIs.join(', ')} with threshold ${riskThreshold}...`;
+        const qiCombinations = {};
+        kmap_fullSampleData.forEach(row => {
+            const comboKey = selectedQIs.map(qi => row[qi]).join(' | ');
+            if (!qiCombinations[comboKey]) { qiCombinations[comboKey] = { count: 0, values: {} }; selectedQIs.forEach(qi => qiCombinations[comboKey].values[qi] = row[qi]); }
+            qiCombinations[comboKey].count++;
+        });
+        const riskMapTable = document.getElementById('kmap_riskMapTable');
+        const tableHead = riskMapTable.getElementsByTagName('thead')[0]; const tableBody = riskMapTable.getElementsByTagName('tbody')[0];
+        tableHead.innerHTML = ""; tableBody.innerHTML = "";
+        const headerRow = tableHead.insertRow();
+        selectedQIs.forEach(qi => { const th = document.createElement('th'); th.textContent = kmap_availableQIs.find(q => q.value === qi)?.label || qi; headerRow.appendChild(th); });
+        const countTh = document.createElement('th'); countTh.textContent = "Count (k)"; headerRow.appendChild(countTh);
+        let riskyCellsFound = 0;
+        Object.values(qiCombinations).sort((a,b) => a.count - b.count).forEach(combo => {
+            const row = tableBody.insertRow(); selectedQIs.forEach(qi => { row.insertCell().textContent = combo.values[qi]; });
+            const countCell = row.insertCell(); countCell.textContent = combo.count;
+            if (combo.count < riskThreshold) { row.classList.add('risky-row'); riskyCellsFound++; }
+        });
+        document.getElementById('kmap_status').textContent = riskyCellsFound > 0 ? `Risk map generated. Found ${riskyCellsFound} combination(s) below threshold ${riskThreshold} (highlighted).` : `Risk map generated. All combinations meet or exceed threshold ${riskThreshold}.`;
+    }
+
+    // --- Differential Privacy Demo ---
+    const dp_sampleData = [
+        { id: 1, hoursHome: 10 }, { id: 2, hoursHome: 40 }, { id: 3, hoursHome: 0 }, { id: 4, hoursHome: 20 }, { id: 5, hoursHome: 16 }, { id: 6, hoursHome: 8 },
+        { id: 7, hoursHome: 24 }, { id: 8, hoursHome: 32 }, { id: 9, hoursHome: 0 }, { id: 10, hoursHome: 40 }, { id: 11, hoursHome: 12 }, { id: 12, hoursHome: 20 },
+        { id: 13, hoursHome: 15 }, { id: 14, hoursHome: 25 }, { id: 15, hoursHome: 30 }, { id: 16, hoursHome: 5 }, { id: 17, hoursHome: 35 }, { id: 18, hoursHome: 18 },
+        { id: 19, hoursHome: 22 }, { id: 20, hoursHome: 0 }
+    ];
+    function populateDPTable() {
+        const tableBody = document.getElementById('dp_dataTable').getElementsByTagName('tbody')[0]; tableBody.innerHTML = "";
+        dp_sampleData.forEach(item => { const row = tableBody.insertRow(); row.insertCell().textContent = item.id; row.insertCell().textContent = item.hoursHome; });
+    }
+    function laplaceMechanism(value, sensitivity, epsilon) {
+        if (epsilon <= 0) return value + (Math.random() * sensitivity * 10);
+        const b = sensitivity / epsilon; const u = Math.random() - 0.5;
+        return value + (-Math.sign(u) * b * Math.log(1 - 2 * Math.abs(u)));
+    }
+    function runDPDemo() {
+        const epsilon = parseFloat(document.getElementById('dp_epsilon').value);
+        if (isNaN(epsilon) || epsilon <= 0) { alert("Please enter a valid positive epsilon value."); return; }
+        const trueSum = dp_sampleData.reduce((acc, item) => acc + item.hoursHome, 0);
+        const trueAverage = trueSum / dp_sampleData.length;
+        document.getElementById('dp_trueAverage').textContent = trueAverage.toFixed(2);
+        const dataRange = 40; const sensitivityOfAverage = dataRange / dp_sampleData.length; 
+        const noisyAverage = laplaceMechanism(trueAverage, sensitivityOfAverage, epsilon);
+        document.getElementById('dp_noisyAverage').textContent = noisyAverage.toFixed(2);
+        const vizContainer = document.getElementById('dp_resultVisualization'); const scale = 6; // pixels per hour
+        vizContainer.innerHTML = `<div style="margin-bottom:8px;">True Avg: <div class="bar" style="width:${Math.max(0,trueAverage * scale)}px; background-color:#6c757d;">${trueAverage.toFixed(1)}</div></div>
+                                  <div>DP Avg: &nbsp;&nbsp;&nbsp;<div class="bar" style="width:${Math.max(0, noisyAverage * scale)}px;">${noisyAverage.toFixed(1)}</div></div>`;
+    }
+
+    // --- Graph-Based Privacy Demo ---
+    const graph_orgData = { name: "Alice (CEO)", role: "Chief Executive Officer", reports: [ { name: "Bob (VP Eng)", role: "VP Engineering", reports: [ { name: "Charlie (Dir.Eng)", role: "Director of Eng.", reports: [ { name: "Eve (Mgr.Alpha)", role: "Eng. Manager Alpha", reports: [ { name: "Grace (Eng)", role: "Software Engineer" }, { name: "Heidi (Eng)", role: "Software Engineer" } ]}, { name: "Frank (Mgr.Beta)", role: "Eng. Manager Beta", reports: [ { name: "Ivy (Eng)", role: "Software Engineer" }, { name: "Jack (Eng)", role: "Software Engineer" }, { name: "Judy (Eng)", role: "Software Engineer" } ]} ]}, { name: "Dave (Dir.Platform)", role: "Director of Platform", reports: [ { name: "Kyle (Mgr.Plat)", role: "Platform Manager", reports: [ { name: "Liam (Eng)", role: "Platform Engineer" } ]} ]} ]}, { name: "Mallory (VP Sales)", role: "VP Sales", reports: [ { name: "Nina (Dir.Sales E)", role: "Sales Director East", reports: [ { name: "Oscar (Mgr.Sales A)", role: "Sales Manager A", reports: []} ]}, { name: "Peggy (Dir.Sales W)", role: "Sales Director West", reports: []} ]} ] };
+    function renderOrgChart(node, parentElement, isAnonymized, kDegree) {
+        const listItem = document.createElement('li');
+        let nodeRole = node.role; // Use a mutable variable for role
+        let content = `<span class="employee-node">${node.name}</span> <span class="employee-role">(${nodeRole})</span>`;
+        let numReports = node.reports ? node.reports.length : 0; let displayNumReports = String(numReports); let generalized = false;
+        if (isAnonymized && node.reports) {
+            if (numReports === 1 && kDegree > 1) { displayNumReports = "1-2 reports"; generalized = true; }
+            else if (numReports === 0 && kDegree > 1 && nodeRole.toLowerCase().includes("manager")) { displayNumReports = "0-1 reports"; generalized = true; }
+            if (nodeRole === "Platform Manager" && numReports === 1) { nodeRole = "Technical Manager"; generalized = true; content = `<span class="employee-node">${node.name}</span> <span class="employee-role">(${nodeRole})</span>`; }
+        }
+        if (node.reports) { content += ` <span class="report-count">[Reports: ${displayNumReports}]</span>`; }
+        if(generalized) { listItem.classList.add('generalized'); }
+        listItem.innerHTML = content; parentElement.appendChild(listItem);
+        if (node.reports && node.reports.length > 0) { const subList = document.createElement('ul'); listItem.appendChild(subList); node.reports.forEach(report => renderOrgChart(report, subList, isAnonymized, kDegree)); }
+    }
+    function runGraphPrivacyDemo() {
+        const kDegree = parseInt(document.getElementById('graph_minDegreeK').value);
+        document.getElementById('graph_status').textContent = `Applying graph anonymization (illustrative k-degree for report counts: ${kDegree})...`;
+        const originalChartContainer = document.getElementById('graph_originalOrgChart'); originalChartContainer.innerHTML = '<ul></ul>';
+        renderOrgChart(JSON.parse(JSON.stringify(graph_orgData)), originalChartContainer.firstChild, false, kDegree);
+        const anonymizedChartContainer = document.getElementById('graph_anonymizedOrgChart'); anonymizedChartContainer.innerHTML = '<ul></ul>';
+        renderOrgChart(JSON.parse(JSON.stringify(graph_orgData)), anonymizedChartContainer.firstChild, true, kDegree);
+        document.getElementById('graph_status').textContent = `Graph anonymization applied. Generalized items are highlighted.`;
+    }
+
+    // --- Initial Setup & Navigation ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Populate initial tables for demos that need it before interaction
+        populateTable('kanon_originalDataTable', kanon_sampleData, kanon_columns); runKAnonymizationDemo();
+        populateTable('ldiv_originalDataTable', ldiv_sampleData, ldiv_columns); runLDiversityDemo();
+        populateTable('tclose_originalDataTable', tclose_sampleData, tclose_columns); runTClosenessDemo();
+        // k-map is user-driven, no initial table data beyond headers from JS
+        populateDPTable(); runDPDemo();
+        runGraphPrivacyDemo();
+
+
+        const hash = window.location.hash.substring(1);
+        const defaultSection = 'intro';
+        const sectionToLoad = hash || defaultSection;
+        const linkToActivate = document.querySelector(`.navbar a[href="#${sectionToLoad}"]`) || document.querySelector(`.navbar a[href="#${defaultSection}"]`);
+        
+        showSection(sectionToLoad, linkToActivate);
+
+
+        // Add event listener for kmap QI checkboxes to enforce max 3
+        const kmapCheckboxes = kmap_availableQIs.map(qi => document.getElementById(qi.id));
+        kmapCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = kmapCheckboxes.filter(cb => cb.checked).length;
+                if (checkedCount > 3) {
+                    checkbox.checked = false; // Uncheck the last checked item if more than 3
+                    document.getElementById('kmap_errorMessage').textContent = "You can select a maximum of 3 QIs.";
+                } else {
+                     document.getElementById('kmap_errorMessage').textContent = "";
+                }
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>
