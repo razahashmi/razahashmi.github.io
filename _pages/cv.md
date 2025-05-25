@@ -10,8 +10,10 @@ redirect_from:
 {% include base_path %}
 
 <section class="cv-section">
-  <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ Download CV (PDF)</a>
-  <h1>Curriculum Vitae</h1>
+  <div class="cv-header">
+    <h1>Curriculum Vitae</h1>
+    <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ </a>
+  </div>
   <hr>
   <h2>Education</h2>
   <ul>
@@ -102,10 +104,15 @@ redirect_from:
   border-radius: 12px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.07);
 }
-.cv-section h1 {
-  text-align: center;
-  font-size: 2.5rem;
+.cv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 0.5rem;
+}
+.cv-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
 }
 .cv-section h2 {
   color: #2a7ae2;
@@ -138,7 +145,7 @@ redirect_from:
 }
 .cv-download-btn {
   display: inline-block;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 0 0 1.5rem;
   padding: 0.7em 1.5em;
   background: #2a7ae2;
   color: #fff;
@@ -148,6 +155,7 @@ redirect_from:
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(42,122,226,0.08);
   transition: background 0.2s;
+  white-space: nowrap;
 }
 .cv-download-btn:hover {
   background: #185a9d;
