@@ -115,7 +115,7 @@ author:
   xing             :
   youtube          :
   wikipedia        :
-
+  Resume/CV         : "https://razahashmi.github.io/files/RESUME _Raza_Hashmi.pdf"
 
 # Reading Files
 include:
@@ -219,7 +219,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: false
       comments: true
   # _publications
   - scope:
