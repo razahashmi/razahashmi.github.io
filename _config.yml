@@ -187,6 +187,9 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
+  work: # Added work collection
+    output: true
+    permalink: /:collection/:path/ # Standard permalink for items in work collection
 
 
 # Defaults
