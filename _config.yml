@@ -89,7 +89,7 @@ author:
   googlescholar    : 
   email            : "razahashmi93@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
-  resume              : "https://razahashmi.github.io/files/RESUME_Raza_Hashmi.pdf"
+  uri              : #"https://razahashmi.github.io/files/RESUME_Raza_Hashmi.pdf"
   bitbucket        :
   codepen          :
   dribbble         :

@@ -1,7 +1,7 @@
 ---
 layout: archive
-title: "CV"
 permalink: /cv/
+title: "Curriculum Vitae"
 author_profile: true
 redirect_from:
   - /resume
@@ -9,72 +9,132 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* BSc in Economics, Lahore University of Management Sciences, 2016
+<section class="cv-section">
+  <h1>Curriculum Vitae</h1>
+  <hr>
+  <h2>Education</h2>
+  <ul>
+    <li><strong>BSc in Economics</strong>, Lahore University of Management Sciences, 2016</li>
+  </ul>
 
-Work experience
-======
+  <h2>Work Experience</h2>
+  <ul>
+    <li><strong>Technical and Data Lead</strong> <br>
+      <em>Ark Re ltd.</em> <br>
+      <span class="cv-date">March 2016 - Present</span><br>
+      <span class="cv-desc">Leading Development team, Solutions Engineering, ML.</span>
+    </li>
+    <li><strong>Research Assistant</strong> <br>
+      <em>Lahore University of Management Sciences</em> <br>
+      <span class="cv-date">April 2019 - Feb 2020</span><br>
+      <span class="cv-desc">Working on different Research Ideas. Supervisor: Professor Asim Karim</span>
+    </li>
+    <li><strong>Research Assistant</strong> <br>
+      <em>Lahore University of Management Sciences</em> <br>
+      <span class="cv-date">2016-2018</span><br>
+      <span class="cv-desc">Writing code and conducting experiments to quantify risk attitudes in Islamic vs traditional equities. Supervisor: Professor Imtiaz-ul-Haq</span>
+    </li>
+    <li><strong>Teaching Assistant</strong> <br>
+      <em>MECO 121 Principles of Macroeconomics, LUMS</em> <br>
+      <span class="cv-date">2016</span>
+    </li>
+    <li><strong>Teaching Assistant</strong> <br>
+      <em>ECON 221 Intermediate Macroeconomics, LUMS</em> <br>
+      <span class="cv-date">2015</span>
+    </li>
+  </ul>
 
-* March 2016 - Present: Technical and Data Lead
-  * Ark Re ltd.
-  * Duties included: Leading Development team, Solutions Engineering, ML .
+  <h2>Honors & Awards</h2>
+  <ul>
+    <li>Graduation with High Distinction, 2016</li>
+    <li>Deans Honours List – Lahore University of Management Sciences, 2012-2016</li>
+  </ul>
 
-* April 2019 - Feb 2020: Research Assistant
-  * Lahore University of Management Sciences
-  * Duties included: Working on different Research Ideas.
-  * Supervisor: Professor Asim Karim
+  <h2>Skills</h2>
+  <ul>
+    <li><strong>Python</strong>: Pytorch, Jax, Tensorflow, Keras</li>
+    <li><strong>SQL</strong></li>
+    <li><strong>Java, Kotlin</strong>: App Development</li>
+    <li><strong>Languages</strong>:
+      <ul>
+        <li>Urdu (Native)</li>
+        <li>Persian (Native)</li>
+        <li>Punjabi (Native)</li>
+        <li>English (Expert)</li>
+        <li>Hindi (Expert)</li>
+        <li>French (Beginner)</li>
+      </ul>
+    </li>
+  </ul>
 
-* 2016-2018: Research Assistant
-  * Lahore University of Management Sciences
-  * Duties included: writing code and conducting experiments to quantify risk attitudes in Islamic vs traditional equities
-  * Supervisor: Professor Imtiaz-ul-Haq
-  
-* 2016:Teaching Assistant
-  * MECO 121 Principles of Macroeconomics, LUMS
+  <h2>Publications</h2>
+  <ul>
+    {% for post in site.publications %}
+      {% include archive-single-cv.html %}
+    {% endfor %}
+  </ul>
 
+  <!-- Teaching
+  <h2>Teaching</h2>
+  <ul>
+    {% for post in site.teaching %}
+      {% include archive-single-cv.html %}
+    {% endfor %}
+  </ul>
+  -->
 
-* 2015: Teaching Assistant
-  * ECON 221 Intermediate Macroeconomics, LUMS
+  <h2>Experiments & Insights</h2>
+  <p class="cv-note">A collection of projects and ideas that provided valuable lessons, even if they didn't succeed as planned.</p>
+  <ul>
+    {% for post in site.talks %}
+      {% include archive-single-talk-cv.html %}
+    {% endfor %}
+  </ul>
+</section>
 
-Honors & Awards
-======
-* Graduation with High Distinction, 2016
-* Deans Honours List – Lahore University of Management Sciences, 2012-2016
-  
-Skills
-======
-* Python
-  * Pytorch
-  * Jax
-  * Tensorflow
-  * Keras
-* SQL
-* Java, kotlin, App Development
-* Languages
-  * Urdu (Native)
-  * Persian (Native)
-  * Punjabi (Native)
-  * English (Expert)
-  * Hindi (Expert)
-  * French (Beginner).
+<style>
+.cv-section {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+.cv-section h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.cv-section h2 {
+  color: #2a7ae2;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.2rem;
+}
+.cv-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+.cv-section li {
+  margin-bottom: 1.1rem;
+  line-height: 1.6;
+}
+.cv-date {
+  color: #888;
+  font-size: 0.95em;
+}
+.cv-desc {
+  display: block;
+  color: #444;
+  margin-top: 0.2em;
+}
+.cv-note {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1em;
+}
+</style>
 
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-<!-- Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul> -->
-
-Ideas that didn't work
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
 
