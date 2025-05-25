@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /cv/
-title: "Curriculum Vitae"
+# title: "Curriculum Vitae"
 author_profile: true
 redirect_from:
   - /resume
@@ -10,6 +10,8 @@ redirect_from:
 {% include base_path %}
 
 <section class="cv-section">
+  <!-- <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ Download CV (PDF)</a> -->
+  <button id="download-pdf-btn" class="cv-download-btn" type="button" style="margin-left:1em;">🖨️ Download as PDF</button>
   <h1>Curriculum Vitae</h1>
   <hr>
   <h2>Education</h2>
@@ -92,6 +94,35 @@ redirect_from:
   </ul>
 </section>
 
+<!-- jsPDF and html2canvas CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+document.getElementById('download-pdf-btn').addEventListener('click', function() {
+  const cvSection = document.querySelector('.cv-section');
+  html2canvas(cvSection, { scale: 2 }).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new window.jspdf.jsPDF('p', 'pt', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    // Calculate image dimensions to fit A4
+    const imgWidth = pageWidth - 40;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+    let position = 20;
+    pdf.addImage(imgData, 'PNG', 20, position, imgWidth, imgHeight);
+    // If content overflows, add new pages
+    let remainingHeight = imgHeight;
+    while (remainingHeight > pageHeight - 40) {
+      pdf.addPage();
+      position = 20;
+      remainingHeight -= (pageHeight - 40);
+      pdf.addImage(imgData, 'PNG', 20, -remainingHeight + 20, imgWidth, imgHeight);
+    }
+    pdf.save('CV_Raza_Hashmi.pdf');
+  });
+});
+</script>
+
 <style>
 .cv-section {
   max-width: 800px;
@@ -134,6 +165,23 @@ redirect_from:
   font-style: italic;
   color: #666;
   margin-bottom: 1em;
+}
+.cv-download-btn {
+  display: inline-block;
+  margin: 0 auto 1.5rem auto;
+  padding: 0.7em 1.5em;
+  background: #2a7ae2;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(42,122,226,0.08);
+  transition: background 0.2s;
+}
+.cv-download-btn:hover {
+  background: #185a9d;
+  color: #fff;
 }
 </style>
 
