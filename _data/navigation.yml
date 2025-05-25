@@ -1,17 +1,17 @@
 # main links links
 main:
-  - title: "Publications"
-    url: /publications/
 
   - title: "Blog Posts"
     url: /year-archive/
-
-  - title: "CV"
-    url: /cv/
-
-  - title: "Ideas that didnt work"
-    url: /talks/
   
   - title: "Work"
     url: /work/
-    
+
+  - title: "Publications"
+    url: /publications/
+
+  - title: "Trials & Errors"
+    url: /talks/
+
+  - title: "CV"
+    url: /cv/
