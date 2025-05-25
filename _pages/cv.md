@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /cv/
-# title: "Curriculum Vitae"
+title: "Curriculum Vitae"
 author_profile: true
 redirect_from:
   - /resume
@@ -10,8 +10,7 @@ redirect_from:
 {% include base_path %}
 
 <section class="cv-section">
-  <!-- <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ Download CV (PDF)</a> -->
-  <button id="download-pdf-btn" class="cv-download-btn" type="button" style="margin-left:1em;">🖨️ Download as PDF</button>
+  <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ Download CV (PDF)</a>
   <h1>Curriculum Vitae</h1>
   <hr>
   <h2>Education</h2>
@@ -93,35 +92,6 @@ redirect_from:
     {% endfor %}
   </ul>
 </section>
-
-<!-- jsPDF and html2canvas CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-document.getElementById('download-pdf-btn').addEventListener('click', function() {
-  const cvSection = document.querySelector('.cv-section');
-  html2canvas(cvSection, { scale: 2 }).then(canvas => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new window.jspdf.jsPDF('p', 'pt', 'a4');
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-    // Calculate image dimensions to fit A4
-    const imgWidth = pageWidth - 40;
-    const imgHeight = canvas.height * imgWidth / canvas.width;
-    let position = 20;
-    pdf.addImage(imgData, 'PNG', 20, position, imgWidth, imgHeight);
-    // If content overflows, add new pages
-    let remainingHeight = imgHeight;
-    while (remainingHeight > pageHeight - 40) {
-      pdf.addPage();
-      position = 20;
-      remainingHeight -= (pageHeight - 40);
-      pdf.addImage(imgData, 'PNG', 20, -remainingHeight + 20, imgWidth, imgHeight);
-    }
-    pdf.save('CV_Raza_Hashmi.pdf');
-  });
-});
-</script>
 
 <style>
 .cv-section {
