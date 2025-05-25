@@ -82,14 +82,14 @@ analytics:
 author:
   name             : "Raza Hashmi"
   avatar           : "profile.png"
-  bio              : "ML Researcher"
+  bio              : "Product, ML, Game Dev"
   location         : "Pakistan"
   employer         :
   pubmed           : 
   googlescholar    : 
   email            : "razahashmi93@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
-  uri              :
+  uri              : "https://razahashmi.github.io/files/RESUME_Raza_Hashmi.pdf"
   bitbucket        :
   codepen          :
   dribbble         :
@@ -102,7 +102,7 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         :  "https://www.linkedin.com/in/raza-hashmi-4b89a675/"
   orcid            : "https://orcid.org/0000-0003-4872-2048"
   pinterest        :
   soundcloud       :
@@ -115,7 +115,7 @@ author:
   xing             :
   youtube          :
   wikipedia        :
-  Resume/CV         : "https://razahashmi.github.io/files/RESUME _Raza_Hashmi.pdf"
+ 
 
 # Reading Files
 include:
