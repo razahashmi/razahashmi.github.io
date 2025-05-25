@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /cv/
-title: "Curriculum Vitae"
+# title: "Curriculum Vitae"
 author_profile: true
 redirect_from:
   - /resume
@@ -12,7 +12,7 @@ redirect_from:
 <section class="cv-section">
   <div class="cv-header">
     <h1>Curriculum Vitae</h1>
-    <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download>⬇️ </a>
+    <a href="/files/RESUME_Raza_Hashmi.pdf" class="cv-download-btn" download title="Download CV (PDF)">⬇️</a>
   </div>
   <hr>
   <h2>Education</h2>
@@ -144,22 +144,25 @@ redirect_from:
   margin-bottom: 1em;
 }
 .cv-download-btn {
-  display: inline-block;
-  margin: 0 0 0 1.5rem;
-  padding: 0.7em 1.5em;
-  background: #2a7ae2;
-  color: #fff;
-  border-radius: 6px;
-  font-size: 1.1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+  padding: 0.5em 0.7em;
+  background: none;
+  color: #2a7ae2;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.7em;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(42,122,226,0.08);
-  transition: background 0.2s;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
   white-space: nowrap;
 }
 .cv-download-btn:hover {
-  background: #185a9d;
-  color: #fff;
+  background: #f0f4fa;
+  color: #185a9d;
 }
 </style>
 
