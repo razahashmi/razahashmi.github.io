@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Home"
 title_separator          : "-"
 name                     : &name "Raza Hashmi"
-description              : &description "ML researcher"
+description              : &description "Product, ML, Game Dev"
 url                      : https://razahashmi.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "razahashmi/razahashmi.github.io"
@@ -89,7 +89,7 @@ author:
   googlescholar    : 
   email            : "razahashmi93@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
-  uri              : "https://razahashmi.github.io/files/RESUME_Raza_Hashmi.pdf"
+  resume              : "https://razahashmi.github.io/files/RESUME_Raza_Hashmi.pdf"
   bitbucket        :
   codepen          :
   dribbble         :
