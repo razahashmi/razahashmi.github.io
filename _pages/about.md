@@ -18,7 +18,7 @@ Thank you for bearing with this. --->
 
 <h1> Work </h1>
 
-I have some done innovative and amazing work. Please do check out that *[here](razahashmi.github.io/work/)* 
+I have some done innovative and amazing work. Please do check out that *[here](https://razahashmi.github.io/work/)* 
 
 <h1> News </h1>
 
