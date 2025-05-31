@@ -11,9 +11,9 @@ For nearly a decade, I was deeply involved in building innovative, user-centric 
 SHAPE began as an advanced survey tool, exploring key dimensions such as physical and psychological health, life outside work, corporate culture, engagement, commitment, job satisfaction, coworker dynamics, management style, business essentials, and both physical and soft work environments.
 
 It soon evolved into a comprehensive HR intelligence platform. Its key capabilities include:
-*   Organizational Hierarchy Mapping: Visualizing complex company structures.
-*   Role-Based Access & Reporting: Tailored dashboards and insights for employees, managers, and executives.
-*   Complex Structure Management: Supporting multi-layered national and international organizations (e.g., Toyota Pakistan → Regional → Toyota Japan) while maintaining precise reporting lines and data aggregation.
+- Organizational Hierarchy Mapping: Visualizing complex company structures.
+- Role-Based Access & Reporting: Tailored dashboards and insights for employees, managers, and executives.
+- Complex Structure Management: Supporting multi-layered national and international organizations (e.g., Toyota Pakistan → Regional → Toyota Japan) while maintaining precise reporting lines and data aggregation.
 
 I played a pivotal role across the entire product lifecycle, contributing to technical development, UX/UI design, and strategic product direction.
 
