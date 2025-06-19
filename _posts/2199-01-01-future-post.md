@@ -1,11 +1,91 @@
 ---
-title: 'Future Blog Posts'
-date: 2022-03-01
-permalink: /posts/2022/03/blog-post-2/
+title: 'Iterative Trolley Problem'
+date: 2025-06-18
+permalink: /posts/2025/06/blog-post-2/
 tags:
   - Philosophy
-  - Machine learning
-  - Tech & software dev
 ---
 
-In my free time, I love to read philosophy books and also like to follow up on the latest developments in technology and software developments. Hence, I will also amuse you with some of my ramblings on philosophy, technological advancements and cool new software features/ideas that i think are really cool.
+# I Designed a Trolley Problem That Puts You on the Tracks. It's More Complicated Than You Think.
+
+For over half a century, a single, deceptively simple scenario has served as philosophy’s favorite moral laboratory: the trolley problem. We all know the setup, originally conceived by Philippa Foot in 1967 and later refined by Judith Jarvis Thomson. A runaway trolley is about to kill five people. You can pull a lever to divert it, but doing so will kill one person on a side track.
+
+The question echoes through every Intro to Ethics class: Do you pull the lever?
+
+This puzzle brilliantly pits two titans of moral philosophy against each other. On one side stands **Utilitarianism**, the cold, calculating logic that demands the greatest good for the greatest number. In this view, pulling the lever is not just permissible but morally obligatory. Five lives outweigh one. The end justifies the means.
+
+On the other side stands **Deontology**, which argues for absolute moral duties. A core deontological principle is the prohibition against actively killing. From this perspective, pulling the lever makes you a murderer. While letting five people die is a tragedy, it is not your hand causing their death. You are forbidden from taking an action that uses one person's life as a means to an end, regardless of the outcome.
+
+  
+
+For years, I've been fascinated by this conflict. But I've also come to believe the classic trolley problem is a trap. It presents us with a clean, sterile, third-person puzzle, as if we are floating above the tracks, god-like and dispassionate. It ignores the messy, emotional, and deeply personal realities of moral decision-making. Real life isn't a single, static choice. It's a series of shifting contexts where our principles are stress-tested by our instincts, our biases, and our own skin in the game.
+
+So, I redesigned the experiment. I wanted to see what happens when we move through the problem in iterations, forcing us to inhabit different roles—from philosopher, to potential victim, to judge. This isn't about finding the "right" answer. It's about revealing the hidden architecture of our own moral psychology.
+
+---
+
+### **Iteration 1: The Philosopher's Gaze**
+
+We begin on familiar ground. You are the impartial observer, the philosopher-king standing by the lever. Five people on one track, one on the other. This first step serves a crucial purpose: it establishes your baseline moral principle in a vacuum.
+
+When you have no personal stake, what is your default setting? Do you calculate the numbers, or do you adhere to the rule? Your answer here is your "moral north star" before the storm hits.
+
+---
+
+### **Iteration 2: The Shock of Self-Preservation**
+
+Now, the scenario shatters its sterile frame. The abstract becomes visceral.
+
+**YOU are now the one tied to the main track.** A single, uninvolved stranger is on the side track. The lever is within your reach. If you pull it, you will live, and the stranger will die. If you do nothing, you will die, and the stranger will live.
+
+Suddenly, the clean lines of Utilitarianism and Deontology are blurred by the terrifying, primal instinct of self-preservation. The question is no longer about the "greater good" in the abstract; it's about whether your life is worth more than a stranger's.
+
+Does your carefully constructed ethical framework from Iteration 1 survive contact with the fear of your own death? Is it hypocrisy to change your mind, or is it an undeniable, human truth that self-preservation is an instinct that overrides abstract principles? This is where the puzzle gets messy, and where our principles are truly tested.
+
+---
+
+### **The Final Iteration: The Judge's Gavel**
+
+This is where the experiment moves into entirely new territory. You are no longer a participant in the immediate crisis. You are now a judge, tasked with assessing the moral worth of others who have faced the classic dilemma. And their past actions will determine their fate in a new crisis.
+
+**Scenario A: Judging the Inactive**
+
+An author—let's call them Author A—previously faced the classic trolley problem and chose to **do nothing**, letting five people die. Now, a new trolley is hurtling toward an innocent stranger. On the side track is Author A. To save the stranger, you must actively pull the lever, which will kill Author A. If you do nothing, the stranger dies and Author A lives.
+
+**Scenario B: Judging the Actor**
+
+Another author—Author B—faced the same classic problem and chose to **pull the lever**, sacrificing one to save five. Now, Author B is on the side track, and the same innocent stranger is on the main track. Once again, you must pull the lever to save the stranger at the cost of the author's life.
+
+Your verdict here is no longer about Utilitarianism vs. Deontology in a vacuum. It's about justice, retribution, and moral desert. Does Author A's past inaction create a "moral debt" that makes them more expendable? Does Author B's past heroism grant them a "moral credit" that makes them more worthy of being saved?
+
+You are no longer just solving a math problem or following a rule. You are weighing a soul. This final iteration tests our deepest intuitions about fairness and whether we believe a person's moral history should influence their right to life in a completely unrelated event.
+
+---
+
+### Further Loops: Other Iterations to Consider
+
+The power of this iterative model is its flexibility. We can swap out variables to test different aspects of our moral framework. Consider these:
+
+1. **The Kinship Iteration:** In Iteration 2, it isn't you on the tracks, but your child, your parent, or your partner. The stranger remains on the other track. Does this change your decision? This version pits pure impartiality against our most powerful agent-relative duties—the special obligations we feel towards our loved ones.
+
+2. **The Culpability Iteration:** What if the five people on the track in Iteration 1 were not innocent bystanders, but convicted criminals who had committed heinous acts? And the one person on the side track was a celebrated doctor? This forces us to ask if we believe all lives are truly equal.
+
+3. **The Group Justice Iteration:** Let's twist Iteration 2. You are on the tracks. But the people on the _other_ track are the five people who, in a previous round, conspired to tie you there. Pulling the lever now isn't just killing strangers; it's an act of self-defense against your aggressors. Does this make pulling the lever not only permissible, but morally necessary?
+---
+### **Take the Survey: Become Part of the Experiment**
+
+I have formalized this iterative problem into a short, anonymous survey. It will walk you through each of these roles—philosopher, victim, and judge—and will then ask you to reflect on the consistency (or inconsistency) of your own choices.
+
+The goal is to gather data to see the patterns in how our moral compass shifts under pressure. Do we hold others to a standard we wouldn't apply to ourselves? Do we reward past good deeds and punish past inaction?
+
+Your participation will contribute to a fascinating collective insight into the real, messy business of human morality.
+  
+**[Click Here to Take the Iterative Trolley Problem Survey (5-7 minutes)](https://forms.gle/Vbi7aVo8wXKyo18Y9)**
+ 
+---
+
+## Next Steps
+
+Once I have enough data I will compile and analyze the anonymized results. I’ll publish the findings— looking at how judgments change when we introduce personal risk, second-order consequences, and moral debt or credit. If you’d like to see how people’s moral compasses align (or clash) in these scenarios, stay tuned.
+
+Thanks for reading—and for contributing. In a sense, you just stepped onto the trolley tracks and discovered there’s no single right answer. Instead, there’s a messy web of principles, instincts, biases, and judgments. And through this experiment, we might glimpse how those threads shape our moral lives.
