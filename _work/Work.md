@@ -17,7 +17,7 @@ It soon evolved into a comprehensive HR intelligence platform. Its key capabilit
 
 I played a pivotal role across the entire product lifecycle, contributing to technical development, UX/UI design, and strategic product direction.
 
-🧠 **My Key Contributions to SHAPE:**
+🧠 **My Key Contributions:**
 
 **Privacy-Centric Algorithms:** Developed novel mathematical approaches to ensure employee anonymity in survey data.
 👉 *[Privacy Demo](https://razahashmi.github.io/files/privacy_demo.html#intro)*. 
