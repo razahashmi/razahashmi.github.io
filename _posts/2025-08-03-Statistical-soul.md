@@ -12,3 +12,5 @@ The Statistical Soul proposes that human genius and excellence are statistical i
 **[Click here to read the full article](https://razahashmi.github.io/files/statistical-soul.html)**
 
 ![Alt text](/images/casino_of_life.png "In the vast casino of existence, we are all lottery tickets—some scratched, some unscratched, all potentially extraordinary.")
+
+Used GPT as writing assitant and image creation.
