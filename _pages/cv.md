@@ -22,28 +22,80 @@ redirect_from:
 
   <h2>Work Experience</h2>
   <ul>
-    <li><strong>Technical and Data Lead</strong> <br>
-      <em>Ark Re ltd.</em> <br>
-      <span class="cv-date">March 2016 - Present</span><br>
-      <span class="cv-desc">Leading Development team, Solutions Engineering, ML.</span>
+    <li><strong>Head of Product</strong> <br>
+      <em>SHAPE Global Ltd</em> <br>
+      <span class="cv-date">Jul 2023 - Aug 2025</span><br>
+      <span class="cv-desc">
+        - Leading SHAPE’s vision to become a science-backed intelligence platform for organizational health.<br>
+        - Driving the product and development roadmap for core features, including survey intelligence, multi-level role-specific reporting, and AI integrations.<br>
+        - Launching partner portals, strategic integrations, and admin tools to advance SHAPE as a self-sustaining HR intelligence solution.
+      </span>
+    </li>
+    <li><strong>Product Manager</strong> <br>
+      <em>World Flourishing Organization</em> <br>
+      <span class="cv-date">Nov 2024 - Jul 2025</span><br>
+      <span class="cv-desc">
+        - Prototyped an AI-driven compliance framework that processes client-uploaded evidence and assigns Flourishing level.<br>
+        - Developed a global flourishing standard combining internal metrics (Surveys, Policies) with external factors (ESG, sentiment).<br>
+        - Laid the foundation for a new global benchmark in evaluating workplace wellbeing and ethical performance.
+      </span>
+    </li>
+    <li><strong>Technical Product Lead</strong> <br>
+      <em>SHAPE Global Ltd</em> <br>
+      <span class="cv-date">May 2021 - Jun 2023</span><br>
+      <span class="cv-desc">
+        - Architected advanced privacy-preserving algorithms for survey anonymity.<br>
+        - Led development of data caching pipelines, analytics dashboards, and role-based permissions for enterprise customers.<br>
+        - Scaled the platform to support complex, multi-layered reporting for global organizations with dynamic hierarchies.
+      </span>
+    </li>
+    <li><strong>Product Innovation Manager</strong> <br>
+      <em>SHAPE Global Ltd</em> <br>
+      <span class="cv-date">Sep 2019 - May 2021</span><br>
+      <span class="cv-desc">
+        - Pioneered a proprietary Scoring methodology for holistic employee feedback.<br>
+        - Developed tools for enhanced user onboarding, org-mapping features, and survey configuration to drive platform adoption.
+      </span>
+    </li>
+    <li><strong>Technical & Data Analyst</strong> <br>
+      <em>SHAPE Global Ltd</em> <br>
+      <span class="cv-date">Oct 2017 - Sep 2019</span><br>
+      <span class="cv-desc">
+        - Engineered SHAPE’s initial product infrastructure—covering survey logic, reporting, and admin workflows.<br>
+        - Oversaw early client deployments, gathering user feedback to drive the initial product development lifecycle.
+      </span>
+    </li>
+    <li><strong>Machine Learning Researcher</strong> <br>
+      <em>Lahore University of Management Sciences</em> <br>
+      <span class="cv-date">Sep 2018 - Sep 2019</span><br>
+      <span class="cv-desc">
+        - Investigated novel neural network architectures and training methodologies (Dr. Asim Karim).<br>
+        - Focus on model interpretability and performance optimization.<br>
+        - Co-authored "Explainable AI: Object Recognition With Help From Background" (ICLR 2022 CSS Workshop).
+      </span>
+    </li>
+    <li><strong>Product & Data Analyst</strong> <br>
+      <em>Ofono App</em> <br>
+      <span class="cv-date">Mar 2017 - Nov 2017</span><br>
+      <span class="cv-desc">
+        - Worked on core user features for capturing emotional feedback (sliders, emojis, contextual text).<br>
+        - Developed the initial data structure for emotional tagging and sentiment analysis.
+      </span>
     </li>
     <li><strong>Research Assistant</strong> <br>
       <em>Lahore University of Management Sciences</em> <br>
-      <span class="cv-date">April 2019 - Feb 2020</span><br>
-      <span class="cv-desc">Working on different Research Ideas. Supervisor: Professor Asim Karim</span>
+      <span class="cv-date">May 2016 - Aug 2017</span><br>
+      <span class="cv-desc">
+        - Supported research projects on financial inclusion and economic development (Dr. Imtiaz ul Haq).<br>
+        - Conducted data analysis, policy evaluation, and literature reviews.
+      </span>
     </li>
-    <li><strong>Research Assistant</strong> <br>
-      <em>Lahore University of Management Sciences</em> <br>
-      <span class="cv-date">2016-2018</span><br>
-      <span class="cv-desc">Writing code and conducting experiments to quantify risk attitudes in Islamic vs traditional equities. Supervisor: Professor Imtiaz-ul-Haq</span>
-    </li>
-    <li><strong>Teaching Assistant</strong> <br>
-      <em>MECO 121 Principles of Macroeconomics, LUMS</em> <br>
-      <span class="cv-date">2016</span>
-    </li>
-    <li><strong>Teaching Assistant</strong> <br>
-      <em>ECON 221 Intermediate Macroeconomics, LUMS</em> <br>
-      <span class="cv-date">2015</span>
+    <li><strong>Intern</strong> <br>
+      <em>Ministry of Planning, Development and Reforms</em> <br>
+      <span class="cv-date">Jun 2015 - Sep 2015</span><br>
+      <span class="cv-desc">
+        - Assisted in data collection, policy research, and evaluation of national economic initiatives.
+      </span>
     </li>
   </ul>
 
@@ -55,9 +107,8 @@ redirect_from:
 
   <h2>Skills</h2>
   <ul>
-    <li><strong>Python</strong>: Pytorch, Jax, Tensorflow, Keras</li>
-    <li><strong>SQL</strong></li>
-    <li><strong>Java, Kotlin</strong>: App Development</li>
+    <li><strong>Technical</strong>: Python (Pytorch, Jax, Tensorflow, Keras), SQL, Java, Kotlin</li>
+    <li><strong>Product & Research</strong>: Product Strategy, Privacy Algorithms, Uncertainty Estimation, Interpretability</li>
     <li><strong>Languages</strong>:
       <ul>
         <li>Urdu (Native)</li>
