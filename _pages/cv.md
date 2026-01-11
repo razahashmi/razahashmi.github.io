@@ -26,22 +26,23 @@ redirect_from:
     <div class="skill-category">
       <h3>Product Leadership</h3>
       <div class="skill-tags">
-        <span>Product Strategy</span>
+        <span>Product Strategy & Roadmap</span>
         <span>0-to-1 Development</span>
-        <span>Org Hierarchy Mapping</span>
-        <span>Privacy-Preserving Algorithms</span>
-        <span>SaaS Scaling</span>
-        <span>Stakeholder Management</span>
+        <span>Technical Product Management</span>
+        <span>AI Integration Strategy</span>
+        <span>B2B SaaS Scaling</span>
+        <span>Cross-Functional Leadership</span>
       </div>
     </div>
     <div class="skill-category">
-      <h3>Data & Analytics</h3>
+      <h3>ML Research & Analytics</h3>
       <div class="skill-tags">
+        <span>Deep Learning (PyTorch/Jax)</span>
         <span>Uncertainty Estimation</span>
-        <span>Interpretability (XAI)</span>
-        <span>Scoring Systems</span>
-        <span>Metric Design</span>
-        <span>Survey Intelligence</span>
+        <span>Model Interpretability (XAI)</span>
+        <span>Algorithmic Design</span>
+        <span>Quantitative Research</span>
+        <span>Experiment Design</span>
       </div>
     </div>
     <div class="skill-category">
