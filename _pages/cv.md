@@ -361,7 +361,7 @@ h2 {
   color: #777;
   font-style: italic;
 }
-</style>
+<style>
   margin-left: 1.5rem;
   padding: 0.5em 0.7em;
   background: none;
