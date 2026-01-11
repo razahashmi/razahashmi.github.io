@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I’m a **product builder** who also does **machine learning research**.
+I build products and run ML research—especially on uncertainty, scaling and interpretability.
 Over the last decade I’ve taken products from fuzzy problem statements to shipped systems—connecting user needs, UX, data/metrics, and implementation to build solutions that are **privacy-conscious, decision-useful, and scalable**.
 
 On the research side, I work on **uncertainty**, **interpretability**, and the **learning dynamics** that shape model behavior.
