@@ -33,7 +33,7 @@ On the research side, I work on **uncertainty**, **interpretability**, and the *
 
 ### Product leadership (SHAPE — Survey & HR Intelligence Platform)
 
-As Head of Product, I helped evolve SHAPE (see: https://shapepowered.com/ and https://shapepowered.com/science) from an advanced survey product into an HR intelligence platform with:
+As Head of Product, I helped evolve [SHAPE](https://shapepowered.com/) from an advanced survey product into an HR intelligence platform with:
 
 - Org hierarchy mapping for complex, multi-layered organizations
 - Role-based access and reporting for employees, managers, and executives
@@ -48,20 +48,20 @@ Selected scale / proof points:
 
 Selected artifacts:
 
-- Privacy-centric algorithms demo: [/files/privacy_demo.html#intro](/files/privacy_demo.html#intro)
-- Scoring system write-up: [/files/SPS.html](/files/SPS.html)
+- [Privacy-centric algorithms demo:](/files/privacy_demo.html#intro)
+- [Scoring system Whitepaper:](/files/SPS.html)
 
-More detail: [/work/](/work/)
+[More detail](/work/)
 
 ### Building measurement frameworks (World Flourishing Organization)
 
 As a founding member at [World Flourishing Organization](https://worldflourishing.org/), I helped develop a framework to identify and measure flourishing in organizations—bridging research concepts, practical measurement, and what it would take to run this at scale.
 
-- Framework: [/files/WFOFramework.pdf](/files/WFOFramework.pdf)
+- [Framework: ](/files/WFOFramework.pdf)
 
 ### ML Research
 
-- Presented: “Explainable AI: Object Recognition With Help From Background” (ICLR 2022, CSS Workshop): [/publications/2022-04-29-object-recognition-with-backgrounds](/publications/2022-04-29-object-recognition-with-backgrounds)
+- Presented: [“Explainable AI: Object Recognition With Help From Background” (ICLR 2022, CSS Workshop):](/publications/2022-04-29-object-recognition-with-backgrounds)
 - Current work (drafts): pathway-based uncertainty, diffusion-based uncertainty, and difficulty/learning-dynamics methods (see “Now” above).
 
 ## Interests
@@ -73,9 +73,9 @@ As a founding member at [World Flourishing Organization](https://worldflourishin
 
 ## Writing & side projects
 
-- Reinforcement learning project: “Can an AI Learn the Art of Valet Parking?”: [/posts/2022/04/blog-post-1/](/posts/2022/04/blog-post-1/)
-- Essay on using GenAI responsibly and staying in the driver’s seat: [/posts/2024/02/blog-post/](/posts/2024/02/blog-post/)
-- An iterative trolley-problem experiment + survey: [/posts/2025/06/blog-post-2/](/posts/2025/06/blog-post-2/)
+- Reinforcement learning project: [“Can an AI Learn the Art of Valet Parking?”:](/posts/2022/04/blog-post-1/)
+- [Essay on using GenAI responsibly and staying in the driver’s seat:](/posts/2024/02/blog-post/)
+- [An iterative trolley-problem experiment + survey:](/posts/2025/06/blog-post-2/)
 
 Browse all posts: [/year-archive/](/year-archive/)
 
