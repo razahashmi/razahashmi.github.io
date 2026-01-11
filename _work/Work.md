@@ -6,7 +6,7 @@ permalink: /work/
 
 For nearly a decade, I was deeply involved in building innovative, user-centric products.
 
-🔷 **Chief Product Officer - [SHAPE](https://shapepowered.com/) – Survey & HR Intelligence Platform (2018–Present)**
+🔷 **Head of Product - [SHAPE](https://shapepowered.com/) – Survey & HR Intelligence Platform (2018–2025)**
 
 SHAPE began as an advanced survey tool, exploring key dimensions such as physical and psychological health, life outside work, corporate culture, engagement, commitment, job satisfaction, coworker dynamics, management style, business essentials, and both physical and soft work environments.
 
@@ -31,11 +31,11 @@ I played a pivotal role across the entire product lifecycle, contributing to tec
 **Multi-Level Reporting Architecture:** Engineered systems for identity inheritance and aggregated/disaggregated reporting across complex conglomerate structures.
 
 
-**Founding Member – [World Flourishing Organization](https://worldflourishing.org/) (2024–Present)**
+**Product Manager – [World Flourishing Organization](https://worldflourishing.org/) (2024–2025)**
 
 WFO recognizes and celebrates the world’s most flourishing organizations—those that lead with purpose, measure what matters, and turn insight into impact. We are setting a new global standard: human flourishing as the driver of business excellence.
 
-As a founding member, I led the development of an innovative framework to identify and measure flourishing within organizations. This state-of-the-art system challenges traditional metrics, leveraging technology and AI to redefine how organizational success is recognized in the modern era.
+As a Product Manager, I led the development of an innovative framework to identify and measure flourishing within organizations. This state-of-the-art system challenges traditional metrics, leveraging technology and AI to redefine how organizational success is recognized in the modern era.
 
 Learn more about the framework 👉 [here](https://razahashmi.github.io/files/WFOFramework.pdf).
 
