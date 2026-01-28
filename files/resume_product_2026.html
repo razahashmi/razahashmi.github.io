@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raza Hashmi - Product Resume</title>
+    <style>
+        /* Print-friendly CSS */
+        :root {
+            --primary-color: #222; 
+            --accent-color: #2a7ae2;
+            --bg-color: #ffffff;
+        }
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: var(--primary-color);
+            line-height: 1.45;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        .page {
+            background: white;
+            width: 21cm; /* A4 width */
+            min-height: 29.7cm;
+            margin: 2cm auto;
+            padding: 2cm 2.5cm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header-left h1 {
+            margin: 0;
+            font-size: 26pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #111;
+        }
+        .header-left h2 {
+            margin: 5px 0 0;
+            font-size: 12pt;
+            font-weight: 500;
+            color: #555;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 9pt;
+            line-height: 1.5;
+            color: #444;
+        }
+        .header-right a {
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 1px dotted #999;
+        }
+
+        /* Sections */
+        h3 {
+            font-size: 11pt;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            margin: 1.2rem 0 0.6rem 0;
+            padding-bottom: 3px;
+            letter-spacing: 0.8px;
+            color: #111;
+        }
+        
+        .section-content {
+            font-size: 10pt;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .skill-col strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 9.5pt;
+            color: #000;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 2px;
+        }
+        .skill-col ul {
+            margin: 0;
+            padding-left: 1rem;
+            list-style: square;
+        }
+        .skill-col li {
+            font-size: 9pt;
+            margin-bottom: 2px;
+            color: #333;
+        }
+
+        /* Experience */
+        .job-block {
+            margin-bottom: 1.2rem;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .job-title {
+            font-weight: 700;
+            font-size: 11pt;
+        }
+        .job-company {
+            font-weight: 600;
+            color: #333;
+        }
+        .job-date {
+            font-weight: 500;
+            color: #666;
+            font-size: 10pt;
+        }
+        .job-sub {
+            display: flex;
+            justify-content: space-between;
+            font-style: italic;
+            color: #555;
+            font-size: 9.5pt;
+            margin-bottom: 4px;
+        }
+        .job-desc ul {
+            margin: 3px 0 0 0;
+            padding-left: 1.2rem;
+        }
+        .job-desc li {
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        /* Compact Summary */
+        .summary {
+            font-size: 10pt;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Button */
+        .download-hint {
+            text-align: center;
+            padding: 15px;
+            background: #2a7ae2;
+            color: white;
+            font-family: sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .spacer-top {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="page">
+    <header>
+        <div class="header-left">
+            <h1>Raza Hashmi</h1>
+            <h2>Senior Product Manager & Technical PM</h2>
+        </div>
+        <div class="header-right">
+            razahashmi93@gmail.com<br>
+            razahashmi.github.io<br>
+            linkedin.com/in/raza-hashmi-4b89a675/
+        </div>
+    </header>
+
+    <div class="section-content summary">
+        <strong>Product Leader (8+ Years)</strong> specializing in scaling B2B SaaS from <strong>0-to-1</strong> to enterprise adoption. Proven track record of <strong>diagnosing complex user pain points</strong> and crafting <strong>strategic product solutions</strong> that solve critical challenges for thousands of employees globally. Expert in navigating ambiguity, managing cross-functional teams, and delivering high-impact systems that solve critical business problems (HR Tech, Fintech, Compliance).
+    </div>
+
+    <h3>Core Competencies</h3>
+    <div class="section-content skills-grid">
+        <div class="skill-col">
+            <strong>Product Strategy</strong>
+            <ul>
+                <li>Roadmap Planning</li>
+                <li>Agile & Scrum Leadership</li>
+                <li>GTM & Feature Launch</li>
+                <li>Requirements Gathering</li>
+                <li>User Research/UX</li>
+            </ul>
+        </div>
+        <div class="skill-col">
+            <strong>B2B / Technical PM</strong>
+            <ul>
+                <li>SaaS Platform Scaling</li>
+                <li>API & Integration Strategy</li>
+                <li>Enterprise Security/Privacy</li>
+                <li>Data-Driven Decision Making</li>
+                <li>Stakeholder Management</li>
+            </ul>
+        </div>
+        <div class="skill-col">
+             <strong>Technical Advantage</strong>
+            <ul>
+                <li>ML/AI Fluency (PyTorch/NLP)</li>
+                <li>SQL & Data Analytics</li>
+                <li>System Architecture Design</li>
+                <li>Rapid Prototyping</li>
+                <li>Technical Feasibility Analysis</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Work Experience</h3>
+    <div class="section-content">
+        
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Head of Product</span>
+                <span class="job-date">Jul 2023 - Aug 2025</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">SHAPE Global Ltd</span>
+                <span>Remote / London, UK</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>Product Strategy:</strong> Owned the vision and execution for SHAPE’s transition from a survey tool to a comprehensive HR intelligence platform.</li>
+                    <li><strong>Leadership:</strong> Managed cross-functional teams (Engineering, Design, QA) to deliver weekly sprints and major quarterly releases.</li>
+                    <li><strong>Enterprise Scale:</strong> Launched enterprise-grade features including Role-Based Access Control (RBAC), multi-level org hierarchy mapping, and admin portals.</li>
+                    <li><strong>Commercial Impact:</strong> Delivered key integrations and partner portals that enabled B2B customer retention and expansion.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Product Manager (Founding Member)</span>
+                <span class="job-date">Nov 2024 - Jul 2025</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">World Flourishing Organization</span>
+                <span>Remote</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>0-to-1 Innovation:</strong> Led the definition and development of a novel compliance framework for measuring organizational health.</li>
+                    <li><strong>Requirement Definition:</strong> Translated academic research into actionable product requirements and scoring logic.</li>
+                    <li><strong>Prototyping:</strong> Built functional prototypes to validate the "Flourishing Standard" with early stakeholders.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Technical Product Lead</span>
+                <span class="job-date">May 2021 - Jun 2023</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">SHAPE Global Ltd</span>
+                <span>Remote</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>Technical Execution:</strong> Architected proprietary privacy algorithms, solving a critical customer pain point around survey anonymity.</li>
+                    <li><strong>Performance Scaling:</strong> Oversaw the backend optimization (caching pipelines) to support complex real-time reporting dashboards.</li>
+                    <li><strong>Feature Delivery:</strong> Collaborated with engineering to ship complex multi-layered reporting features on time and high quality.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Product Innovation Manager</span>
+                <span class="job-date">Sep 2019 - May 2021</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">SHAPE Global Ltd</span>
+                <span>Remote</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>User Experience:</strong> Redesigned user onboarding flows and survey configuration tools, significantly reducing setup time for new clients.</li>
+                    <li><strong>differentiation:</strong> Pioneered a unique "Scoring" methodology that became a key product differentiator in the market.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Technical & Data Analyst</span>
+                <span class="job-date">Oct 2017 - Sep 2019</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">SHAPE Global Ltd</span>
+                <span>Remote</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li>Gathered early user feedback to drive iteration of the initial product MVP.</li>
+                    <li>Defined the logic for survey analytics and reporting workflows.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title">Product & Data Analyst</span>
+                <span class="job-date">Mar 2017 - Nov 2017</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">Ofono App</span>
+                <span>Remote</span>
+            </div>
+            <div class="job-desc">
+                <ul>
+                    <li>Worked on core user features for capturing emotional feedback (sliders, emojis).</li>
+                    <li>Developed data structures for emotional tagging and sentiment analysis.</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    <h3>Additional Experience & Education</h3>
+    <div class="section-content">
+        <div class="job-block" style="margin-bottom: 0.5rem">
+            <div class="job-header">
+                <span class="job-title" style="font-size: 10pt">Machine Learning Researcher (Part-Time)</span>
+                <span class="job-date">2018 - 2019</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">LUMS</span>
+            </div>
+            <div class="job-desc" style="font-size: 9pt">
+                Published research on Explainable AI (ICLR Workshop), sharpening ability to evaluate AI technologies.
+            </div>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span class="job-title" style="font-size: 10pt">BSc (Hons) in Economics</span>
+                <span class="job-date">2016</span>
+            </div>
+            <div class="job-sub">
+                <span class="job-company">Lahore University of Management Sciences</span>
+                <span>High Distinction</span>
+            </div>
+        </div>
+    </div>
+
+    <h3>Publications & Selected Work</h3>
+    <div class="section-content">
+        <ul>
+            <li><strong>ICLR 2022 CSS Workshop:</strong> "Explainable AI: Object Recognition With Help From Background" (Co-author)</li>
+            <li><strong>Privacy-Centric Algorithms Demo:</strong> razahashmi.github.io/files/privacy_demo.html</li>
+            <li><strong>Whitepaper:</strong> Scoring System Design (razahashmi.github.io/files/SPS.html)</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

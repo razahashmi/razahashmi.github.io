@@ -1,0 +1,18 @@
+To the Hiring Manager,
+
+I am writing to apply for the [AI Product Manager / Technical Product Manager] role at [Company Name]. As a Product Leader with over 8 years of experience and a published ML Researcher (ICLR 2022 Workshop), I specialize in the challenge that defines modern AI product management: **bridging the gap between research capabilities and scalable, user-centric products.**
+
+In my most recent role as Head of Product at SHAPE Global, I did not just manage roadmaps; I architected the core algorithmic value of the platform. I designed and shipped proprietary **privacy-preserving algorithms** that solved a critical "cold start" trust problem for enterprise data collection. I also led the development of complex **scoring methodologies** that transformed raw survey data into predictive workforce insights.
+
+Why I am a strong fit for [Company Name]:
+1.  **I speak "Research":** Having conducted my own research in Explainable AI (XAI) and Uncertainty Estimation, I can seamlessly collaborate with Data Science teams, understanding the nuances of model evaluation, bias, and the probabilistic nature of AI.
+2.  **I build "Product":** I have 8 years of experience in B2B SaaS scaling, meaning I know how to wrap complex models in intuitive UX, manage 0-to-1 launches, and navigate enterprise requirements like RBAC and compliance.
+3.  **I drive "Revenue":** I don't build models for the sake of it. I focus on "Time to Value." At SHAPE, the algorithmic features I championed were directly responsible for winning our largest enterprise contracts.
+
+I am eager to bring this unique blend of commercially-minded product leadership and deep technical fluency to [Company Name]. I look forward to discussing how I can help your team ship intelligent products that deliver real user value.
+
+Sincerely,
+
+**Raza Hashmi**  
+[linkedin.com/in/raza-hashmi](https://linkedin.com/in/raza-hashmi)  
+[razahashmi.github.io](https://razahashmi.github.io)
