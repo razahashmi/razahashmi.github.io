@@ -78,6 +78,3 @@ As a founding member at [World Flourishing Organization](https://worldflourishin
 - [An iterative trolley-problem experiment + survey](/posts/2025/06/blog-post-2/)
 
 Browse all posts: [/year-archive/](/year-archive/)
-
-
-
