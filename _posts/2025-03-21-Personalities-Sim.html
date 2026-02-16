@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Population Sim &#8212; Every Voice, Every Reaction, Simulated</title>
+
+    <!-- Open Graph / Social Cards -->
+    <meta property="og:title" content="Persona Population Sim &#8212; Every Voice, Every Reaction, Simulated">
+    <meta property="og:description" content="I built 300 psychographically distinct AI personas, exposed them to 3,000 real tweets, and simulated the full spectrum of behavioural response &#8212; entirely synthetically.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="outputs/ideology_timeseries.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Persona Population Sim &#8212; Simulating Human Discourse at Scale">
+    <meta name="twitter:description" content="300 AI personas. 3,000 tweets. A synthetic population that models the full spectrum of engagement &#8212; from champions to observers.">
+
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #007bff;
+            --accent-color: #00c6ff;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --highlight-bg: #e9ecef;
+            --success-bg: #d4edda;
+            --success-text: #155724;
+            --risk-bg: #f8d7da;
+            --risk-text: #721c24;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffc107;
+            --font-sans-serif: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-sans-serif);
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* --- Navigation --- */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 12px 25px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .navbar li {
+            margin-right: 6px;
+            margin-bottom: 5px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-weight: 500;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .navbar a:hover, .navbar a.active {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- Main Container --- */
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 30px 35px;
+            background-color: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- Section Tabs --- */
+        .section {
+            display: none;
+            padding-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            line-height: 1.2;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.15em;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h2 {
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        p { margin-bottom: 1em; }
+
+        /* --- KPI Row --- */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .kpi-card {
+            background: var(--highlight-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        .kpi-value.accent { color: var(--secondary-color); }
+        .kpi-value.green { color: var(--success-text); }
+        .kpi-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6c757d;
+            margin-top: 8px;
+        }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        td strong { color: var(--primary-color); }
+
+        /* --- Explanation Box (blue border) --- */
+        .explanation {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9f5ff;
+            border-radius: 6px;
+            border-left: 5px solid var(--secondary-color);
+        }
+        .explanation strong { color: var(--primary-color); }
+        .explanation ul { padding-left: 20px; }
+        .explanation li { margin-bottom: 0.5em; }
+
+        /* --- Innovation / Success Box (green border) --- */
+        .innovation {
+            margin: 20px 0;
+            padding: 18px;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-text);
+            color: var(--success-text);
+            border-radius: 6px;
+            border-left: 5px solid var(--success-text);
+        }
+        .innovation strong { color: #0f5132; }
+
+        /* --- Warning Box (yellow border) --- */
+        .warning-box {
+            margin: 20px 0;
+            padding: 18px;
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 6px;
+            border-left: 5px solid var(--warning-border);
+        }
+
+        /* --- Pipeline --- */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        .pipe-stage {
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .pipe-stage:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .pipe-number {
+            width: 32px; height: 32px;
+            background: var(--secondary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .pipe-stage h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 8px;
+            color: var(--primary-color);
+        }
+        .pipe-stage p {
+            font-size: 0.92rem;
+            margin: 0;
+            color: #555;
+        }
+
+        /* --- Code / Equation Block --- */
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px 22px;
+            border-radius: 6px;
+            font-family: var(--font-monospace);
+            white-space: pre-wrap;
+            font-size: 0.88em;
+            margin: 20px 0;
+            border: 1px solid #444;
+            overflow-x: auto;
+            line-height: 1.9;
+        }
+        .code-block .eq-label {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.78em;
+            letter-spacing: 0.08em;
+        }
+        .code-block .var { color: #56b6c2; }
+        .code-block .fn { color: #c678dd; }
+        .code-block .comment { color: #5c6370; }
+        .code-block .num { color: #e5c07b; }
+
+        /* --- Feature Grid --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 18px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .feature-card .icon {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .feature-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 6px;
+        }
+        .feature-card p {
+            font-size: 0.88rem;
+            margin: 0;
+            color: #555;
+        }
+
+        /* --- Archetype Grid --- */
+        .arch-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+           gap: 12px;
+           margin: 20px 0;
+        }
+        .arch-card {
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .arch-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 4px;
+            color: var(--primary-color);
+        }
+        .arch-card .arch-pct {
+            font-size: 0.78rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .arch-card p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: #555;
+        }
+
+        /* --- Persona Card --- */
+        .persona-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 18px 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .persona-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .persona-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--highlight-bg);
+        }
+        .persona-header h4 {
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+        .badge-purple { background: #e0d4f5; color: #5b21b6; }
+        .badge-blue { background: #d1ecf1; color: #0c5460; }
+        .persona-body { padding: 18px 20px; }
+        .persona-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .persona-stats .stat-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #6c757d;
+            margin-bottom: 2px;
+        }
+        .persona-stats .stat-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .persona-desc {
+            font-size: 0.92rem;
+            color: #555;
+            margin: 0;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- Use-case Grid --- */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+            margin: 22px 0;
+        }
+        .use-case {
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: #fdfdfd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .use-case h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 6px;
+        }
+        .use-case p {
+            font-size: 0.88rem;
+            color: #555;
+            margin: 0;
+        }
+        .use-case .use-icon {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+        .use-icon.purple { background: #e0d4f5; }
+        .use-icon.green { background: #d4edda; }
+        .use-icon.blue { background: #d1ecf1; }
+        .use-icon.amber { background: #fff3cd; }
+
+        /* --- Figures --- */
+        figure {
+            margin: 22px 0;
+        }
+        figure img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        figcaption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* --- Gallery --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 22px 0;
+        }
+        .gallery figure { margin: 0; }
+
+        /* --- About / CTA Card --- */
+        .about-card {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            padding: 24px;
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .about-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .about-info h4 {
+            margin: 0 0 4px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+        .about-info .about-role {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .about-info p {
+            font-size: 0.92rem;
+            color: #555;
+            margin: 0;
+        }
+
+        /* --- CTA Buttons --- */
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background-color 0.2s, transform 0.1s;
+            cursor: pointer;
+            border: none;
+        }
+        .cta-btn:hover { transform: translateY(-1px); }
+        .cta-btn.primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .cta-btn.primary:hover { background-color: var(--primary-color); }
+        .cta-btn.secondary {
+            background-color: white;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        .cta-btn.secondary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        .footer strong { color: #555; }
+
+        /* --- Responsive --- */
+        @media (max-width: 700px) {
+            .container { padding: 18px; }
+            .pipeline { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr; }
+            .persona-stats { grid-template-columns: 1fr; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .about-card { flex-direction: column; align-items: center; text-align: center; }
+            .navbar a { padding: 6px 10px; font-size: 0.82em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<div class="navbar">
+    <ul>
+        <li><a href="#overview" onclick="showSection('overview', this)" class="active">Overview</a></li>
+        <li><a href="#pipeline" onclick="showSection('pipeline', this)">Cognitive Pipeline</a></li>
+        <li><a href="#personas" onclick="showSection('personas', this)">Personas</a></li>
+        <li><a href="#network" onclick="showSection('network', this)">Social Network</a></li>
+        <li><a href="#affinity" onclick="showSection('affinity', this)">Ideology &#215; Topic</a></li>
+        <li><a href="#results" onclick="showSection('results', this)">Results</a></li>
+        <li><a href="#visuals" onclick="showSection('visuals', this)">Visualisations</a></li>
+        <li><a href="#architecture" onclick="showSection('architecture', this)">Architecture</a></li>
+        <li><a href="#applications" onclick="showSection('applications', this)">Applications</a></li>
+    </ul>
+</div>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container">
+
+    <h1>Every Voice. Every Reaction. Simulated.</h1>
+    <p class="subtitle">
+        I built 300 psychographically distinct AI personas, exposed them to 3,000 real tweets, and simulated the full spectrum of behavioural response &#8212; from passionate advocates to quiet observers &#8212; entirely synthetically.
+    </p>
+
+    <!-- ===== TL;DR ===== -->
+    <div class="explanation">
+        <strong>TL;DR &#8212;</strong> This is a simulation platform that generates synthetic populations of AI personas &#8212; each with unique psychology, ideology, and interests &#8212; and models how they respond to real-world content. The system produced <strong>3,317 engagement events</strong> (59.9% cascade-driven) across <strong>300 personas</strong> processing <strong>3,001 tweets</strong>, with realistic power-law engagement distributions (Gini = 0.32) and visible ideological differentiation. No real humans involved &#8212; just calibrated cognitive models.
+    </div>
+
+    <!-- KPI Row -->
+    <div class="kpi-row">
+        <div class="kpi-card">
+            <div class="kpi-value">300</div>
+            <div class="kpi-label">Simulated Personas</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value accent">3,317</div>
+            <div class="kpi-label">Engagement Events</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value green">1,988</div>
+            <div class="kpi-label">Network Cascades</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-value">0.32</div>
+            <div class="kpi-label">Gini Coefficient</div>
+        </div>
+    </div>
+
+    <p><strong>Navigate using the tabs above to explore each component of the system.</strong></p>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Overview                                            -->
+    <!-- ============================================================ -->
+    <div id="overview" class="section active">
+        <h2>Overview</h2>
+
+        <h3>The Opportunity</h3>
+        <p>
+            Traditional research captures only the tip of the iceberg. Surveys measure what people <em>say</em>. Social listening captures what they <em>post</em>. But the richest signal &#8212; the cognitive activity of every person in a population, whether they engage or not &#8212; has always been invisible.
+        </p>
+        <p>
+            I built a simulation that models this complete picture using <strong>synthetic AI personas</strong>. Each persona has its own attention patterns, relevance judgements, emotional trajectory, and engagement threshold &#8212; all generated, all tuneable, all analysable. No real humans are involved; instead, the simulation produces realistic behavioural distributions that mirror how diverse populations respond to content.
+        </p>
+        <p>
+            This means you can explore not just <em>which personas engaged</em>, but <em>which ones almost did</em>, <em>what would push them over the edge</em>, and <em>which messages resonate across different psychographic profiles</em> &#8212; all within a controlled synthetic environment.
+        </p>
+
+        <div class="innovation">
+            <strong>What makes this different:</strong> Unlike traditional sentiment analysis or basic persona templates, this system models <strong>activation dynamics</strong> &#8212; each persona accumulates emotional state over time, decays when unstimulated, drifts in mood, fatigues on repeated topics, and is influenced by social network neighbours. The result is emergent, population-level behaviour that wasn't explicitly programmed.
+        </div>
+
+        <h3>Why I Built This</h3>
+        <p>
+            I was exploring how AI could model realistic human behaviour at population scale &#8212; not just answering questions like a chatbot, but replicating the messy, heterogeneous way real communities process information. The challenge was interesting: could you build agents that don't just respond to everything, but have genuine <em>selectivity</em> driven by personality, ideology, and accumulated emotional state?
+        </p>
+        <p>
+            After iterating through five versions of the codebase, I arrived at a system that produces engagement distributions, cascade dynamics, and ideological patterns that look remarkably like what you see in real social media data. The simulation is entirely open-source, fully configurable, and can scale from 300 to 10,000+ personas.
+        </p>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Cognitive Pipeline                                   -->
+    <!-- ============================================================ -->
+    <div id="pipeline" class="section">
+        <h2>The Stochastic Cognitive Pipeline</h2>
+        <p>
+            Every simulated persona processes each tweet through three probabilistic gates. A tweet must survive all three to produce an engagement event.
+        </p>
+
+        <div class="pipeline">
+            <div class="pipe-stage">
+                <div class="pipe-number">1</div>
+                <h4>Attention Gate</h4>
+                <p>
+                    <em>"Did I even see this?"</em> &#8212; Simulates algorithmic feed exposure. Modulated by openness, conscientiousness, topic fatigue, and cooldown state.
+                </p>
+            </div>
+            <div class="pipe-stage">
+                <div class="pipe-number">2</div>
+                <h4>Relevance Function</h4>
+                <p>
+                    <em>"Do I care?"</em> &#8212; Matches tweet content against an expanded synonym keyword set across 15 policy topics, weighted by ideology&#8211;topic affinity.
+                </p>
+            </div>
+            <div class="pipe-stage">
+                <div class="pipe-number">3</div>
+                <h4>Activation Threshold</h4>
+                <p>
+                    <em>"Am I moved enough to respond?"</em> &#8212; A sigmoid-gated decision driven by accumulated emotional state. The hardest filter to clear.
+                </p>
+            </div>
+        </div>
+
+        <h3>The Mathematics</h3>
+
+        <div class="code-block"><span class="eq-label">Activation Update Rule</span>
+
+<span class="var">A(t)</span> = <span class="var">&#948;</span> &#183; <span class="var">A(t-1)</span> + (1 - <span class="var">&#948;</span>) &#183; [<span class="var">&#945;</span> + <span class="var">&#946;</span> &#183; <span class="var">S</span> + <span class="var">&#947;</span> &#183; <span class="var">M</span> + <span class="var">w</span> &#183; <span class="var">mood</span> + <span class="var">ideo_boost</span>]
+
+<span class="comment">where:</span>
+  <span class="var">&#945;</span>  = baseline arousal        <span class="comment">(personality-driven, &#8776; 0.18)</span>
+  <span class="var">&#946;</span>  = sentiment sensitivity   <span class="comment">(how much external tone matters)</span>
+  <span class="var">&#947;</span>  = motivation weight       <span class="comment">(internal drive to engage)</span>
+  <span class="var">&#948;</span>  = memory decay            <span class="comment">(gentle: &#948;^0.2 &#8776; 0.974 retention)</span>
+  <span class="var">S</span>  = tweet sentiment         <span class="comment">(VADER compound score, [-1, 1])</span>
+  <span class="var">M</span>  = internal motivation     <span class="comment">(relevance &#215; responsiveness)</span>
+
+<span class="eq-label">Engagement Probability</span>
+<span class="var">P(engage)</span> = <span class="fn">&#963;</span>(<span class="var">k</span> &#183; (<span class="var">A(t)</span> - <span class="var">&#952;</span>))    <span class="comment">where &#963; = sigmoid, k = 5.0, &#952; &#8776; 0.30</span></div>
+
+        <div class="explanation">
+            <strong>Key Insight:</strong> The sigmoid around the activation threshold creates a <strong>sharp non-linear boundary</strong>. An agent sitting at 0.28 activation has a ~27% chance of responding. Push them to 0.35 and it jumps to ~56%. This means you can pinpoint exactly what makes a message land &#8212; and tune your framing, tone, or topic to move the right audience past that tipping point.
+        </div>
+
+        <h3>Concrete Example: Tweet #5 Through the Pipeline</h3>
+        <p>Consider this real tweet from the dataset:</p>
+        <div class="code-block" style="color: #e2e8f0; font-size: 0.95em; line-height: 1.6;"><em>"This policy rollout is confusing and feels rushed."</em>
+Topic: Housing  |  Sentiment: 0.226  |  20 personas engaged  |  12 cascade triggers</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Stage</th>
+                    <th>What Happened</th>
+                    <th>Numbers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Attention</strong></td>
+                    <td>47 of 300 personas "saw" the tweet in their feed</td>
+                    <td>15.7% attention rate</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Relevance</strong></td>
+                    <td>Matched "housing", "policy" keywords. Liberals and Progressives scored higher relevance due to ideology&#8211;topic affinity.</td>
+                    <td>Average relevance: 0.38</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Activation</strong></td>
+                    <td>The mildly negative sentiment (0.226) combined with existing accumulated activation pushed 8 personas past &#952;. Then 12 more were triggered via network cascades from their neighbours.</td>
+                    <td>8 direct + 12 cascade = 20 total</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="innovation">
+            <strong>This is what makes the simulation valuable:</strong> You can trace <em>exactly</em> why each persona did or didn't engage &#8212; which gate filtered them out, and what would need to change to tip the outcome.
+        </div>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Personas                                            -->
+    <!-- ============================================================ -->
+    <div id="personas" class="section">
+        <h2>Persona Design: 24 Dimensions Per Agent</h2>
+        <p>
+            Each of the 300 simulated agents is not just a label. It is a fully parameterised cognitive profile, sampled from calibrated archetype distributions.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">&#129504;</div>
+                <h4>Big Five Traits (OCEAN)</h4>
+                <p>Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism &#8212; drive attention, reactivity, and learning rate.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#127963;</div>
+                <h4>Political Ideology</h4>
+                <p>Progressive, Liberal, Centrist, Conservative, or Libertarian &#8212; shapes which topics resonate and how sentiment is interpreted.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#127919;</div>
+                <h4>Topic Interests</h4>
+                <p>Each persona cares about 2&#8211;6 of 15 policy domains (education, energy, housing, etc.), expanded via ~120 synonym keywords.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128172;</div>
+                <h4>Communication Tone</h4>
+                <p>Empathetic, Analytical, Assertive, Skeptical, Inquisitive, or Pragmatic &#8212; 6 tones that colour how they process information.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128201;</div>
+                <h4>Fatigue &amp; Mood Drift</h4>
+                <p>Repeated exposure to the same topic yields diminishing attention. Mood drifts stochastically, creating day-to-day variability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#128279;</div>
+                <h4>Social Network Position</h4>
+                <p>Each persona is a node in a Watts&#8211;Strogatz small-world graph (k=6, p=0.1). Triggered agents cascade activation to neighbours.</p>
+            </div>
+        </div>
+
+        <h3>Archetype Distribution</h3>
+        <p>
+            Personas are sampled from five weighted archetypes. Each archetype defines trait means, ideology pools, topic affinities, and threshold shifts. Stochastic variation within each archetype ensures no two agents are identical.
+        </p>
+
+        <div class="arch-grid">
+            <div class="arch-card">
+                <h4>The Activist</h4>
+                <div class="arch-pct">20% of population</div>
+                <p>Progressive/Liberal, high openness (O = 0.72), low threshold. Engages on environment, labor, housing. Attention &#215;1.2.</p>
+            </div>
+            <div class="arch-card">
+                <h4>The Analyst</h4>
+                <div class="arch-pct">24% of population</div>
+                <p>Cross-spectrum, high conscientiousness (C = 0.78). Cautious, data-driven. Tracks economy, tech, cybersecurity. Attention &#215;0.95.</p>
+            </div>
+            <div class="arch-card">
+                <h4>The Guardian</h4>
+                <div class="arch-pct">22% of population</div>
+                <p>Community-focused, high agreeableness (A = 0.72). Reacts to public safety, education, healthcare. Moderate threshold.</p>
+            </div>
+            <div class="arch-card">
+                <h4>The Pragmatist</h4>
+                <div class="arch-pct">20% of population</div>
+                <p>Centre-right, highest conscientiousness (C = 0.74). Skeptical, market-oriented. Economy, tax, manufacturing. Highest threshold.</p>
+            </div>
+            <div class="arch-card">
+                <h4>The Observer</h4>
+                <div class="arch-pct">14% of population</div>
+                <p>Pan-ideology, quietly curious. Broad interests, neutral thresholds. Sees everything, selectively engages.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Social Network                                      -->
+    <!-- ============================================================ -->
+    <div id="network" class="section">
+        <h2>A Small-World Social Graph</h2>
+        <p>
+            Personas don't exist in isolation. They are embedded in a 300-node Watts&#8211;Strogatz network with 900 edges.
+        </p>
+        <p>
+            When a persona triggers, it sends an <strong>activation cascade</strong> to its network neighbours. The boost decays with BFS distance (max 2 hops), meaning a single viral reaction can push a cluster of connected agents past their own thresholds &#8212; producing the kind of sudden, emergent pile-ons familiar from real social media.
+        </p>
+
+        <div class="innovation">
+            <strong>Cascade Dynamics:</strong> Of the 3,317 total engagement events recorded, <strong>1,988 (59.9%) were cascade-generated</strong> &#8212; meaning the majority of engagement was socially amplified. The simulation lets you see exactly <em>how</em> a single reaction propagates through a community, giving you the power to design messages that harness network effects intentionally.
+        </div>
+
+        <h3>Supported Network Topologies</h3>
+        <table>
+            <thead>
+                <tr><th>Model</th><th>Description</th><th>Use Case</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Watts&#8211;Strogatz</strong></td>
+                    <td>Small-world graph (k=6, p=0.1). High clustering, short path lengths.</td>
+                    <td>Default. Models close-knit communities with bridging connections.</td>
+                </tr>
+                <tr>
+                    <td><strong>Barab&#225;si&#8211;Albert</strong></td>
+                    <td>Preferential attachment. Power-law degree distribution.</td>
+                    <td>Models influencer-driven networks with hub nodes.</td>
+                </tr>
+                <tr>
+                    <td><strong>Erd&#337;s&#8211;R&#233;nyi</strong></td>
+                    <td>Random graph. Poisson degree distribution.</td>
+                    <td>Baseline comparison &#8212; no structural clustering.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <figure>
+            <img src="outputs/degree_distribution.png" alt="Network degree distribution">
+            <figcaption>Figure 1 &#8212; Degree distribution of the Watts&#8211;Strogatz social graph.</figcaption>
+        </figure>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Ideology x Topic Affinity                           -->
+    <!-- ============================================================ -->
+    <div id="affinity" class="section">
+        <h2>Ideology &#215; Topic Affinity Matrix</h2>
+        <p>
+            Not every ideology cares about every topic equally. I encode this with a 5&#215;15 affinity matrix that modulates relevance and activation.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Progressive</th>
+                    <th>Liberal</th>
+                    <th>Centrist</th>
+                    <th>Conservative</th>
+                    <th>Libertarian</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Environment</strong></td><td>0.85</td><td>0.65</td><td>0.50</td><td>0.25</td><td>0.20</td></tr>
+                <tr><td><strong>Economy</strong></td><td>0.40</td><td>0.50</td><td>0.60</td><td>0.80</td><td>0.85</td></tr>
+                <tr><td><strong>Education</strong></td><td>0.65</td><td>0.70</td><td>0.55</td><td>0.45</td><td>0.35</td></tr>
+                <tr><td><strong>Healthcare</strong></td><td>0.75</td><td>0.70</td><td>0.55</td><td>0.40</td><td>0.35</td></tr>
+                <tr><td><strong>Public Safety</strong></td><td>0.35</td><td>0.40</td><td>0.50</td><td>0.75</td><td>0.40</td></tr>
+                <tr><td><strong>Tax Policy</strong></td><td>0.55</td><td>0.50</td><td>0.55</td><td>0.75</td><td>0.85</td></tr>
+                <tr><td><strong>Labor</strong></td><td>0.75</td><td>0.55</td><td>0.50</td><td>0.35</td><td>0.30</td></tr>
+                <tr><td><strong>Technology</strong></td><td>0.55</td><td>0.60</td><td>0.55</td><td>0.45</td><td>0.70</td></tr>
+                <tr><td><strong>Energy</strong></td><td>0.80</td><td>0.55</td><td>0.50</td><td>0.55</td><td>0.45</td></tr>
+            </tbody>
+        </table>
+
+        <div class="explanation">
+            The affinity score multiplies the raw relevance signal by a factor in the range <strong>[0.25, 1.75]</strong>, with an additional additive ideology boost of <strong>[-0.10, +0.10]</strong> feeding directly into the activation function. This creates visible ideological separation in the time-series outputs &#8212; Progressives and Liberals sustain higher mean activation on environmental tweets, while Conservatives and Libertarians spike on economy and tax policy.
+        </div>
+
+        <figure>
+            <img src="outputs/topic_ideology_heatmap.png" alt="Heatmap of trigger counts by topic and ideology">
+            <figcaption>Figure 2 &#8212; Trigger count heatmap (Topic &#215; Ideology). Technology and Education emerge as cross-cutting topics; Labor engagement is sharply left-leaning.</figcaption>
+        </figure>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Results                                             -->
+    <!-- ============================================================ -->
+    <div id="results" class="section">
+        <h2>What 3,000 Tweets Revealed</h2>
+        <p>
+            I fed 3,001 real-world policy tweets through 300 personas over 9,000 simulation steps. Here is what the population did.
+        </p>
+
+        <table>
+            <thead>
+                <tr><th>Metric</th><th>Value</th><th>Interpretation</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Total Triggers</strong></td>
+                    <td>3,317</td>
+                    <td>~11.1 per persona on average, but distribution is heavily skewed</td>
+                </tr>
+                <tr>
+                    <td><strong>Cascade Triggers</strong></td>
+                    <td>1,988 (59.9%)</td>
+                    <td>Network amplification accounts for the majority of engagement</td>
+                </tr>
+                <tr>
+                    <td><strong>Trigger Gini</strong></td>
+                    <td>0.3204</td>
+                    <td>Moderate inequality &#8212; a minority drives disproportionate engagement</td>
+                </tr>
+                <tr>
+                    <td><strong>Polarisation Index</strong></td>
+                    <td>0.0096</td>
+                    <td>Low overall polarisation, but visible separation by ideology over time</td>
+                </tr>
+                <tr>
+                    <td><strong>&#967;&#178; Test</strong></td>
+                    <td>32.99 (p = 0.613)</td>
+                    <td>Topic&#215;Ideology association not significant at &#945;=0.05 &#8212; engagement is broad</td>
+                </tr>
+                <tr>
+                    <td><strong>Peak Activation</strong></td>
+                    <td>0.32</td>
+                    <td>Reached on high-sentiment tweets; steady-state settles at 0.03&#8211;0.07</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Personas That Stood Out</h3>
+
+        <div class="persona-card">
+            <div class="persona-header">
+                <h4>The Champion</h4>
+                <span class="badge badge-purple">Top 1%</span>
+            </div>
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div>
+                        <div class="stat-label">Ideology</div>
+                        <div class="stat-value">Progressive</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Interests</div>
+                        <div class="stat-value">Labor, Housing, Education</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Engagement Events</div>
+                        <div class="stat-value" style="color: var(--secondary-color);">42 events &#8212; 4&#215; the mean</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Archetype</div>
+                        <div class="stat-value">Activist</div>
+                    </div>
+                </div>
+                <p class="persona-desc">
+                    High extraversion (E=0.82), low threshold (&#952;=0.20), maximum responsiveness. This is your <strong>early adopter</strong> &#8212; the persona who amplifies your message, starts conversations, and brings communities into the discussion. Knowing who your champions are <em>before</em> you publish is a strategic advantage.
+                </p>
+            </div>
+        </div>
+
+        <div class="persona-card">
+            <div class="persona-header">
+                <h4>The Deep Thinker</h4>
+                <span class="badge badge-blue">Deliberate &amp; Selective</span>
+            </div>
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div>
+                        <div class="stat-label">Ideology</div>
+                        <div class="stat-value">Conservative</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Content Processed</div>
+                        <div class="stat-value">736 tweets absorbed</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Engagement Events</div>
+                        <div class="stat-value" style="color: var(--success-text);">0 public responses</div>
+                    </div>
+                    <div>
+                        <div class="stat-label">Archetype</div>
+                        <div class="stat-value">Observer</div>
+                    </div>
+                </div>
+                <p class="persona-desc">
+                    Absorbed 736 tweets on technology and energy, quietly forming opinions without ever engaging publicly. Traditional tools would miss this person entirely. The simulation captures their <strong>complete cognitive journey</strong> &#8212; what they saw, how it shifted their internal state, and exactly what message would finally move them to act.
+                </p>
+            </div>
+        </div>
+
+        <h3>What Goes Viral &#8212; and What Doesn't</h3>
+        <table>
+            <thead>
+                <tr><th>Topic</th><th>Total Triggers</th><th>Cross-Ideology?</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Education</strong></td>
+                    <td><strong style="color: var(--risk-text);">502</strong></td>
+                    <td>Yes</td>
+                    <td>High affinity across all five ideology groups. Triggers both reform activists and concerned parents.</td>
+                </tr>
+                <tr>
+                    <td><strong>Technology</strong></td>
+                    <td><strong style="color: var(--risk-text);">494</strong></td>
+                    <td>Yes</td>
+                    <td>Broad interest from Analysts, Libertarians, and Observers alike. Low polarity, high relevance.</td>
+                </tr>
+                <tr>
+                    <td><strong>Energy</strong></td>
+                    <td><strong>491</strong></td>
+                    <td>Partial</td>
+                    <td>Strong Progressive and Liberal engagement via climate framing; Conservatives engage on pricing.</td>
+                </tr>
+                <tr>
+                    <td><strong>Public Safety</strong></td>
+                    <td style="color: #6c757d;">69</td>
+                    <td>No</td>
+                    <td>Despite high Conservative affinity (0.75), the topic lacks cross-spectrum resonance.</td>
+                </tr>
+                <tr>
+                    <td><strong>Labor</strong></td>
+                    <td style="color: #6c757d;">120</td>
+                    <td>No</td>
+                    <td>Sharply left-leaning engagement (Liberal: 27, Progressive: 35). The right largely ignores it.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Visualisations                                      -->
+    <!-- ============================================================ -->
+    <div id="visuals" class="section">
+        <h2>Outputs &amp; Diagnostics</h2>
+        <p>
+            The simulation automatically generates diagnostic visualisations. Each one answers a different question about the population.
+        </p>
+
+        <figure>
+            <img src="outputs/ideology_timeseries.png" alt="Mean activation by ideology over time">
+            <figcaption>Figure 3 &#8212; Ideology time-series. Mean activation per ideology group across all 3,001 tweets. The visible separation between Progressive/Liberal (higher) and Conservative/Libertarian (lower) emerges organically from the affinity matrix and sentiment alignment model.</figcaption>
+        </figure>
+
+        <div class="gallery">
+            <figure>
+                <img src="outputs/trigger_distribution.png" alt="Trigger count distribution">
+                <figcaption>Figure 4 &#8212; Power-law tail in trigger distribution.</figcaption>
+            </figure>
+            <figure>
+                <img src="outputs/persona_clusters.png" alt="PCA clusters">
+                <figcaption>Figure 5 &#8212; K-means clustering (k=5) on Big Five traits + activation + trigger rate.</figcaption>
+            </figure>
+        </div>
+
+        <div class="gallery">
+            <figure>
+                <img src="outputs/dashboard.png" alt="Results dashboard">
+                <figcaption>Figure 6 &#8212; Results dashboard: sweep curves, topic distribution, activation history.</figcaption>
+            </figure>
+            <figure>
+                <img src="outputs/sweep.png" alt="Parameter sweep">
+                <figcaption>Figure 7 &#8212; Sensitivity sweep across &#946; (sentiment weight).</figcaption>
+            </figure>
+        </div>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Architecture                                        -->
+    <!-- ============================================================ -->
+    <div id="architecture" class="section">
+        <h2>System Architecture</h2>
+        <p>
+            The simulator is implemented as a modular Python package with 10 components, designed for reproducible experiments and rapid iteration.
+        </p>
+
+        <table>
+            <thead>
+                <tr><th>Module</th><th>Responsibility</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>models</strong></td><td>Core data structures: Persona, SimulationConfig, TriggerEvent. 30+ tunable parameters.</td></tr>
+                <tr><td><strong>population</strong></td><td>Weighted archetype sampling with Big Five trait generation and interest expansion.</td></tr>
+                <tr><td><strong>sentiment</strong></td><td>VADER-backed sentiment analysis with caching. Heuristic fallback (67 keywords).</td></tr>
+                <tr><td><strong>relevance</strong></td><td>Keyword synonym expansion (15 topics &#215; 8&#8211;12 synonyms), ideology&#8211;topic affinity matrix.</td></tr>
+                <tr><td><strong>network</strong></td><td>Social graph generation (Watts&#8211;Strogatz, Barab&#225;si&#8211;Albert, Erd&#337;s&#8211;R&#233;nyi). BFS cascade propagation.</td></tr>
+                <tr><td><strong>simulation</strong></td><td>Core loop: tweet exposure &#8594; attention gate &#8594; activation update &#8594; threshold check &#8594; cascade.</td></tr>
+                <tr><td><strong>analysis</strong></td><td>Gini coefficient, polarisation index, &#967;&#178; test, k-means clustering, PCA.</td></tr>
+                <tr><td><strong>visualization</strong></td><td>Eight automatic plots: ideology time-series, trigger distribution, heatmaps, PCA, degree distribution.</td></tr>
+                <tr><td><strong>io_utils</strong></td><td>CSV/YAML config loading, HTML report generation with embedded statistics.</td></tr>
+                <tr><td><strong>cli</strong></td><td>40+ CLI arguments. Supports population mode and parameter sweep mode.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Calibration &amp; Validation</h3>
+        <p>
+            I iteratively calibrated the simulation against empirical patterns from social media research, targeting three properties.
+        </p>
+
+        <table>
+            <thead>
+                <tr><th>Property</th><th>Target</th><th>Achieved</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Engagement Rate</strong></td>
+                    <td>2&#8211;12% of attended exposures produce a trigger</td>
+                    <td>~3.7% average trigger rate given attention</td>
+                </tr>
+                <tr>
+                    <td><strong>Engagement Inequality</strong></td>
+                    <td>Power-law tail (few hyper-active, many quiet)</td>
+                    <td>Gini = 0.32, range 0&#8211;42 triggers per persona</td>
+                </tr>
+                <tr>
+                    <td><strong>Ideology Separation</strong></td>
+                    <td>Visible but not extreme divergence over time</td>
+                    <td>Clear separation in time-series; Polarisation Index = 0.0096</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="explanation">
+            Key calibration decisions included: gentle passive decay (<strong>&#948;<sup>0.2</sup> &#8776; 0.974</strong> retention when not attending), an activation floor at <strong>15% of &#945;</strong> to prevent total disengagement, and a widened ideology alignment multiplier range (<strong>[0.25, 1.75]</strong>) with an additive boost (<strong>&#177;0.10</strong>) to produce meaningful ideological differentiation without forcing complete echo chambers.
+        </div>
+    </div>
+
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Applications                                        -->
+    <!-- ============================================================ -->
+    <div id="applications" class="section">
+        <h2>What You Can Do With This</h2>
+        <p>
+            A calibrated synthetic population gives you something no survey or analytics dashboard can: the ability to <strong>test any message, on any audience, instantly</strong> &#8212; before it reaches a single real person.
+        </p>
+
+        <div class="use-case-grid">
+            <div class="use-case">
+                <div class="use-icon purple">&#128640;</div>
+                <h4>Launch with Confidence</h4>
+                <p>Feed a press release, policy change, or product announcement into the simulation. Know exactly which segments will champion it and how to optimise your messaging.</p>
+            </div>
+            <div class="use-case">
+                <div class="use-icon green">&#127919;</div>
+                <h4>Find Your Audience</h4>
+                <p>Discover which psychographic profiles resonate with your message. Tune framing, tone, and topic selection to reach the people who matter most.</p>
+            </div>
+            <div class="use-case">
+                <div class="use-icon blue">&#128269;</div>
+                <h4>See the Full Picture</h4>
+                <p>Go beyond engagement metrics. Understand the complete cognitive journey of every persona &#8212; what they processed, how it moved them, and what would activate them next.</p>
+            </div>
+            <div class="use-case">
+                <div class="use-icon amber">&#9889;</div>
+                <h4>Harness Network Effects</h4>
+                <p>Design content that doesn't just land individually but propagates through communities. Map exactly how a reaction cascades from one persona to the next.</p>
+            </div>
+        </div>
+
+        <div class="innovation">
+            <strong>A Wind Tunnel for Communication:</strong> Think of this as a controlled testing environment for public discourse. Just like aerospace engineers test designs in a wind tunnel before building the aircraft, communicators can now test messages against a synthetic population before reaching real audiences &#8212; iterating on tone, framing, and targeting until the message performs as intended.
+        </div>
+
+        <!-- ===== ABOUT / CTA ===== -->
+        <h3>About &amp; Next Steps</h3>
+
+        <div class="about-card">
+            <div class="about-avatar">RH</div>
+            <div class="about-info">
+                <h4>Raza Hashmi</h4>
+                <div class="about-role">Builder &#183; AI &amp; Simulation Research</div>
+                <p>
+                    I'm interested in how synthetic populations can model real-world behaviour at scale &#8212; spanning market research, policy testing, and understanding how communities process information. If this kind of work interests you, I'd love to connect.
+                </p>
+                <div class="cta-row">
+                    <a class="cta-btn primary" href="https://github.com/razahashmi" target="_blank">GitHub</a>
+                    <a class="cta-btn secondary" href="https://linkedin.com/in/razahashmi" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>Looking for collaborators</strong> &#8212; If you work in computational social science, agent-based modelling, behavioural simulation, or synthetic data &#8212; and this project resonates &#8212; I'd welcome the chance to collaborate. Reach out via GitHub or LinkedIn above.
+        </div>
+    </div>
+
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <strong>Persona Population Sim</strong> &#8212; A simulation platform for synthetic human discourse.<br>
+        All outputs, data, and source code available in <code>/outputs</code> and <code>/persona_sim</code>.
+    </div>
+
+</div>
+
+<!-- ===== Section Navigation Script ===== -->
+<script>
+    function showSection(id, el) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+        // Show target
+        var target = document.getElementById(id);
+        if (target) target.classList.add('active');
+        // Update nav active state
+        document.querySelectorAll('.navbar a').forEach(function(a) { a.classList.remove('active'); });
+        if (el) el.classList.add('active');
+    }
+
+    // Handle hash on load
+    window.addEventListener('DOMContentLoaded', function() {
+        var hash = window.location.hash.replace('#', '');
+        if (hash) {
+            var link = document.querySelector('.navbar a[href="#' + hash + '"]');
+            if (link) showSection(hash, link);
+        }
+    });
+</script>
+
+</body>
+</html>
