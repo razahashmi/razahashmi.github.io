@@ -18,7 +18,7 @@ redirect_from:
 
   <h2>Professional Profile</h2>
   <p class="cv-profile-text">
-    <strong>Product Leader & ML Researcher</strong> with 8+ years of experience bridging research concepts with scalable software products. Expert in turning ambiguous problems into shipped systems—specializing in <strong>uncertainty estimation, privacy algorithms, and incentive-aligned metrics</strong>. Proven track record of leading product vision, managing engineering teams, and publishing research in top-tier venues.
+    <strong>Founder, Product Leader & ML Researcher</strong> with 8+ years of experience bridging research concepts with scalable software products. Currently building <strong>Archeode</strong>, an AI product-intelligence platform. Expert in turning ambiguous problems into shipped systems—specializing in <strong>uncertainty estimation, privacy algorithms, and incentive-aligned metrics</strong>. Proven track record of leading product vision, managing engineering teams, and publishing research.
   </p>
 
   <h2>Core Competencies</h2>
@@ -60,7 +60,21 @@ redirect_from:
 
   <h2>Work Experience</h2>
   <div class="timeline">
-    
+
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">Founder</h3>
+        <p class="timeline-meta">Archeode • 2025 - Present</p>
+        <p class="timeline-desc">Building a product-intelligence platform that preserves the “why” behind product decisions.</p>
+        <ul class="timeline-details">
+          <li><strong>Product:</strong> Automatically captures architectural decisions, design rationale, and change impact from existing work streams—tickets, PRs, Slack, docs—without manual wiki upkeep.</li>
+          <li><strong>Approach:</strong> Surfaces relevant history and impact analysis when teams plan a change; teams confirm and correct rather than author from scratch.</li>
+          <li><strong>Stage:</strong> In private pilot (<a href="https://www.archeode.com/">archeode.com</a>).</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="timeline-item">
       <div class="timeline-marker"></div>
       <div class="timeline-content">
@@ -184,8 +198,11 @@ redirect_from:
     {% endfor %}
   </ul>
 
-  <h2>Experiments & Insights</h2>
-  <p class="cv-note">A collection of projects and ideas that provided valuable lessons.</p>
+  <h2>Selected Projects</h2>
+  <p class="cv-note">A fuller showcase—ML experiments, behavioral simulation, and product work—lives on the <a href="/projects/">Projects page</a>.</p>
+
+  <h2>Trials & Errors</h2>
+  <p class="cv-note">Experiments and ideas that didn't pan out—and the lessons they left behind.</p>
   <ul>
     {% for post in site.talks %}
       {% include archive-single-talk-cv.html %}
@@ -360,24 +377,6 @@ h2 {
   font-size: 0.9rem;
   color: #777;
   font-style: italic;
-}
-<style>
-  margin-left: 1.5rem;
-  padding: 0.5em 0.7em;
-  background: none;
-  color: #2a7ae2;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.7em;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: none;
-  transition: background 0.2s, color 0.2s;
-  white-space: nowrap;
-}
-.cv-download-btn:hover {
-  background: #f0f4fa;
-  color: #185a9d;
 }
 </style>
 

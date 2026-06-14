@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Home"
+title                    : "Raza Hashmi"
 title_separator          : "-"
 name                     : &name "Raza Hashmi"
-description              : &description "ML & Startups"
+description              : &description "Founder of Archeode. Product leader and ML researcher turning ambiguous problems into shipped, decision-useful systems."
 url                      : https://razahashmi.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "razahashmi/razahashmi.github.io"
@@ -62,7 +62,7 @@ facebook:
   username               : 
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+og_image                 : "profile.png" # Open Graph/Twitter default site image (theme prepends /images/)
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Raza Hashmi"
   avatar           : "profile.png"
-  bio              : "Startups & ML"
+  bio              : "Founder, Archeode · Product & ML"
   location         : "Pakistan"
   employer         :
   pubmed           : 

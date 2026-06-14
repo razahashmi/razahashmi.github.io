@@ -35,4 +35,12 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
+<!-- Default Open Graph image for link previews (pages with their own header.image override this) -->
+{% unless page.header.image or page.header.overlay_image %}
+  {% if site.og_image %}
+  <meta property="og:image" content="{{ site.og_image | prepend: '/images/' | prepend: site.url }}">
+  <meta property="og:image:alt" content="{{ site.name }}">
+  {% endif %}
+{% endunless %}
+
 <!-- end custom head snippets -->

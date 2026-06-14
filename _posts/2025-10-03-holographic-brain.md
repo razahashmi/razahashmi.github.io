@@ -1,11 +1,13 @@
 ---
 title: "I Gave an LLM a Holographic Brain — Here's What Actually Worked (and What Didn't)"
-collection: talks
-type: "Experimental idea"
-permalink: /FI/2025-10-03-ideas-2
-venue: "Pakistan"
 date: 2025-10-03
-location: "Lahore"
+permalink: /posts/2025/10/holographic-brain/
+redirect_from:
+  - /FI/2025-10-03-ideas-2
+tags:
+  - ML
+  - Memory
+  - LLM
 ---
 
 We have a memory problem in AI.

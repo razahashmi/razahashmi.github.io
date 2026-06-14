@@ -9,7 +9,7 @@ paperurl: 'https://sites.google.com/view/cssiclr2022/home'
 citation: 'Raza Hashmi, Qiang Li. (2022). "Object Recognition With Help From Background." <i>ICLR CSS Workshop</i>.(1)'
 ---
 This work explores how backgrounds might help in object recognition tasks in depth. We categorize the elements present in the background into two factors, class independent factors and class dependent factors.
-In our paper, we find that segmenting out class independent factors help the models achieve better classification accuracy and we also show that class dependent factors help explain the non trivial accuracy that models acheive on background only classification.
+In our paper, we find that segmenting out class-independent factors helps models achieve better classification accuracy, and we also show that class-dependent factors help explain the non-trivial accuracy that models achieve on background-only classification.
 
 [Download presentation here](https://razahashmi.github.io/files/objectrecognitionBackgroundICLR.pdf)
 
