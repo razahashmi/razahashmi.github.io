@@ -1,0 +1,166 @@
+---
+layout: archive
+title: "Projects"
+permalink: /projects/
+author_profile: true
+---
+
+{% include base_path %}
+
+<p class="projects-intro">A selection of things I've built—across ML research, behavioral simulation, and product. For experiments that didn't work out, see <a href="/talks/">Trials &amp; Errors</a>.</p>
+
+<a class="flagship" href="https://www.archeode.com/" target="_blank" rel="noopener">
+  <div class="flagship-tag">Currently building · Private pilot</div>
+  <h2 class="flagship-title">Archeode</h2>
+  <p class="flagship-desc">A product-intelligence platform with one promise: <strong>never lose the “why” behind your product.</strong> It learns from the work teams already do—tickets, PRs, Slack, docs—to keep a living map of decisions and surface impact analysis before changes ship. No blank-page wiki upkeep.</p>
+  <span class="flagship-link">archeode.com →</span>
+</a>
+
+<h2 class="projects-heading">Research &amp; ML</h2>
+<div class="project-grid">
+
+  <div class="project-card">
+    <div class="project-body">
+      <h3><a href="/posts/2025/10/holographic-brain/">A Holographic Brain for LLMs</a></h3>
+      <p>A fixed-size associative memory for language models, based on Holographic Reduced Representations. Hit <strong>100% recall at 2,600 facts</strong> with a ~42× compression ratio versus a naive vector database—after debugging a catastrophic cross-talk failure down to embedding orthogonality.</p>
+      <p class="project-meta">HRR · NumPy · FAISS · SentenceTransformers</p>
+      <p class="project-links"><a href="/posts/2025/10/holographic-brain/">Read the writeup</a> · <a href="https://github.com/razahashmi/ML-WIP" target="_blank" rel="noopener">Code</a></p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="/files/persona_clusters.png" alt="Persona clusters from the behavior simulation" loading="lazy">
+    <div class="project-body">
+      <h3><a href="/posts/2025/03/Sim-Personalities/">A Sandbox for Human Behavior</a></h3>
+      <p><strong>300 AI personas</strong> with distinct personalities and ideologies, exposed to <strong>3,000 real tweets</strong>, producing 3,317 engagement events with realistic power-law dynamics and traceable decision paths—a research instrument for asking <em>why</em> people engage (or stay silent).</p>
+      <p class="project-meta">Agent-based simulation · Stochastic cognition · Networks</p>
+      <p class="project-links"><a href="/posts/2025/03/Sim-Personalities/">Read the writeup</a> · <a href="https://razahashmi.github.io/files/2025-03-21-Personalities-Sim.html" target="_blank" rel="noopener">Explore the simulation</a></p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="/images/valet_park.png" alt="The Valet-Park reinforcement learning environment" loading="lazy">
+    <div class="project-body">
+      <h3><a href="/posts/2022/04/blog-post-1/">Valet-Park: RL Under Pressure</a></h3>
+      <p>Teaching a reinforcement-learning agent the multitasking puzzle of valet parking—spatial reasoning, memory, and time pressure—to see whether it discovers human-like heuristics or invents its own.</p>
+      <p class="project-meta">Reinforcement learning · Pygame / Unity</p>
+      <p class="project-links"><a href="/posts/2022/04/blog-post-1/">Read the writeup</a></p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-body">
+      <h3><a href="/publications/2022-04-29-object-recognition-with-backgrounds">Object Recognition With Help From Background</a></h3>
+      <p>Peer-reviewed work (ICLR 2022, CSS Workshop) on when and how image backgrounds help object classification—separating class-dependent from class-independent factors to explain non-trivial background-only accuracy.</p>
+      <p class="project-meta">Explainable AI · ICLR 2022 Workshop</p>
+      <p class="project-links"><a href="/publications/2022-04-29-object-recognition-with-backgrounds">Details</a> · <a href="https://razahashmi.github.io/files/objectrecognitionBackgroundICLR.pdf" target="_blank" rel="noopener">Paper (PDF)</a></p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="projects-heading">Product</h2>
+<div class="project-grid">
+
+  <div class="project-card">
+    <div class="project-body">
+      <h3><a href="https://razahashmi.github.io/files/privacy_demo.html#intro" target="_blank" rel="noopener">Privacy-Centric Survey Analytics</a></h3>
+      <p>Algorithms that keep individual respondents anonymous—k-anonymity, l-diversity, t-closeness, and differential privacy—without gutting the analytical usefulness of the data, using dynamic generalization hierarchies tuned to the data distribution.</p>
+      <p class="project-meta">SHAPE · Privacy engineering</p>
+      <p class="project-links"><a href="https://razahashmi.github.io/files/privacy_demo.html#intro" target="_blank" rel="noopener">Interactive demo</a></p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="/files/SPS_title.jpg" alt="SHAPE proprietary scoring system" loading="lazy">
+    <div class="project-body">
+      <h3><a href="https://razahashmi.github.io/files/SPS.html" target="_blank" rel="noopener">Proprietary Scoring System</a></h3>
+      <p>A scoring methodology that moves beyond simple averages to a more nuanced, holistic view of employee feedback across 12 measurement dimensions.</p>
+      <p class="project-meta">SHAPE · Measurement design</p>
+      <p class="project-links"><a href="https://razahashmi.github.io/files/SPS.html" target="_blank" rel="noopener">Read the whitepaper</a></p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-body">
+      <h3><a href="https://razahashmi.github.io/files/WFOFramework.pdf" target="_blank" rel="noopener">Flourishing Measurement Framework</a></h3>
+      <p>A framework—built as a founding member of the World Flourishing Organization—to identify and measure flourishing inside organizations, combining internal data with external signals into a single standard.</p>
+      <p class="project-meta">World Flourishing Organization · Framework design</p>
+      <p class="project-links"><a href="https://razahashmi.github.io/files/WFOFramework.pdf" target="_blank" rel="noopener">View the framework (PDF)</a></p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.projects-intro {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.projects-heading {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #555;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.4rem;
+  margin: 2.5rem 0 1.25rem;
+}
+
+/* Flagship */
+.flagship {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(135deg, #f6f9ff 0%, #eef3fb 100%);
+  border: 1px solid #d8e3f5;
+  border-radius: 10px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 0.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.flagship:hover { box-shadow: 0 8px 24px rgba(42,122,226,0.15); transform: translateY(-2px); }
+.flagship-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #2a7ae2;
+  margin-bottom: 0.4rem;
+}
+.flagship-title { margin: 0 0 0.5rem; font-size: 1.8rem; color: #111; }
+.flagship-desc { margin: 0 0 0.75rem; color: #444; line-height: 1.6; }
+.flagship-link { font-weight: 600; color: #2a7ae2; }
+
+/* Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.project-card {
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.project-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+.project-body { padding: 1.1rem 1.25rem 1.25rem; }
+.project-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; line-height: 1.3; }
+.project-card h3 a { text-decoration: none; }
+.project-card p { font-size: 0.92rem; color: #444; line-height: 1.55; margin: 0 0 0.6rem; }
+.project-meta { font-size: 0.78rem !important; color: #888 !important; text-transform: uppercase; letter-spacing: 0.4px; }
+.project-links { font-size: 0.9rem !important; margin-bottom: 0 !important; }
+</style>

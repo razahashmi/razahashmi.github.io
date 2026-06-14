@@ -4,9 +4,19 @@ collection: work
 permalink: /work/
 ---
 
-For nearly a decade, I was deeply involved in building innovative, user-centric products.
+For nearly a decade, I was deeply involved in building innovative, user-centric products. Today I'm building my own.
 
-🔷 **Head of Product - [SHAPE](https://shapepowered.com/) – Survey & HR Intelligence Platform (2018–2025)**
+🚀 **Founder - [Archeode](https://www.archeode.com/) – Product Intelligence Platform (2025–present)**
+
+Archeode is built on a simple promise: **never lose the *why* behind your product.**
+
+Product teams lose their decision history constantly—the rationale behind an architecture choice, why a feature was cut, what a metric was really meant to capture. It lives in old tickets, PR threads, and Slack messages, and walks out the door when people leave. Traditional wikis don't fix this because the blank page is too expensive to maintain.
+
+Archeode takes a different approach: it learns passively from the work teams already do—tickets, pull requests, Slack threads, and docs—to maintain a living map of architectural decisions, design rationale, and change impact. When a team plans a change, it surfaces the relevant history and impact analysis automatically. Teams confirm and correct rather than author from scratch.
+
+👉 Currently in private pilot — [archeode.com](https://www.archeode.com/)
+
+🔷 **Head of Product - [SHAPE](https://shapepowered.com/) – Survey & HR Intelligence Platform (2017–2025)**
 
 SHAPE began as an advanced survey tool, exploring key dimensions such as physical and psychological health, life outside work, corporate culture, engagement, commitment, job satisfaction, coworker dynamics, management style, business essentials, and both physical and soft work environments.
 
@@ -39,7 +49,7 @@ As a Product Manager, I led the development of an innovative framework to identi
 
 Learn more about the framework 👉 [here](https://razahashmi.github.io/files/WFOFramework.pdf).
 
-🌟 **Analyst - Ofono App (2016–2018)**
+🌟 **Analyst - Ofono App (2017)**
 My journey began with a mobile app that aimed to capture emotions through emojis, a slider to indicate intensity, and a text input for context. We integrated a social layer to allow users to share how they were feeling with their network.
 
 Our vision evolved into a marketing intelligence tool where brands could:
