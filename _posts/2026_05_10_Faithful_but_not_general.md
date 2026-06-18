@@ -1,4 +1,15 @@
-# Faithful but not general: does a transformer extrapolate the algorithm it learns?
+---
+title: "Faithful but not general: does a transformer extrapolate the algorithm it learns?"
+date: 2026-05-03
+permalink: /posts/2026/05/faithful/
+redirect_from:
+  - /FI/2026_05_10_Faithful_but_not_general
+tags:
+  - ML
+  - LLM
+---
+
+
 
 *A controlled study that started as a question about machine "creativity" and ended as a clean result about length generalization — one strong negative finding, one positive flicker, and a methodological trap worth naming.*
 
