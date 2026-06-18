@@ -60,13 +60,13 @@ Every condition reaches 100% in-distribution accuracy with zero variance across 
 
 Here is the same model, same training data, varying only the positional encoding, measured at the first out-of-distribution length (L10, two past the max training length of 8):
 
-![PE comparison at L10](files/fig1_pe_bars.png)
+![PE comparison at L10](/images/fig1_pe_bars.png)
 
 NoPE generalizes best (0.78 ± 0.02), then the Abacus-style encoding (0.51, but with a ±0.19 CI — moderately good and wildly unreliable run to run), then ALiBi (0.16, weak but clearly above chance), and RoPE sits at chance. **This reproduces Kazemnejad et al. (2023):** removing positional encodings entirely is the best choice for length generalization. The summation recurrence is position-agnostic, and absolute or rotary positions apparently anchor the computation to specific offsets in a way that doesn't transfer.
 
 But look what happens as you push further out:
 
-![The extrapolation cliff](files/fig2_cliff.png)
+![The extrapolation cliff](/images/fig2_cliff.png)
 
 Every encoding that extrapolates at all does so *only at L10*, and by L12 everything is back at chance — including NoPE. So the honest framing is not "NoPE solves length generalization." It's: **NoPE widens a boundary margin from zero to about two positions; no encoding produces the abstracted, length-general algorithm.** The cliff is the result. The positional encoding is a knob on its width, not a fix.
 
@@ -76,7 +76,7 @@ Every encoding that extrapolates at all does so *only at L10*, and by L12 everyt
 
 The NoPE number deserves an asterisk. Watching a single run over training, in-range accuracy pins to 1.0 early and stays there — but L10 extrapolation **oscillates between chance and ~0.8 across checkpoints**, never settling:
 
-![NoPE instability over training](files/fig3_nope_instability.png)
+![NoPE instability over training](/images/fig3_nope_instability.png)
 
 This is important for two reasons. First, it means the "capability" isn't a stable thing the model acquires and keeps; it flickers. Second, it's a reporting hazard: a single final-checkpoint number (or worse, a best-checkpoint number) can make a fragile, intermittent behavior look like a solid one. The tight ±0.02 seed CI captures variance *at a fixed step* and understates the real instability. If you only take one lesson from this post on the methods side, take this one.
 
@@ -91,7 +91,7 @@ Two interventions you might reach for, both null:
 
 The experiments above hand the model the procedure via supervised chain-of-thought. The harder, more interesting question is whether it can *discover* the procedure without being shown it. I set up expert iteration (STaR-style) with a length curriculum: at each length the model samples its own scratchpad traces, a verifier keeps only the **fully correct** ones (every step right, not just the final answer), and the model is fine-tuned on its own verified traces, with a replay buffer to prevent forgetting earlier lengths.
 
-![Expert iteration collapse](files/fig4_expert_iteration.png)
+![Expert iteration collapse](/images/fig4_expert_iteration.png)
 
 It bootstraps length 1 trivially (the answer just is the input), and then **collapses at the L2→L3 step** — and it collapses at the *same place* whether you use NoPE or RoPE. The mechanism is clean: to get a training signal at the next length, the model has to *sample* a fully-correct trace one step beyond what it has mastered. Once it can't (by L3, fewer than 1% of sampled traces are fully faithful), the verifier has nothing to keep, and the loop starves. The positional encoding's two-position extrapolation margin — which only appears after training on a *range* of lengths — never gets a chance to help, because self-discovery can't climb far enough to build that range. The replay buffer did work as intended (length 1 stays at 100% through the whole curriculum instead of being forgotten), so the failure is specifically the bootstrap, not catastrophic forgetting.
 
