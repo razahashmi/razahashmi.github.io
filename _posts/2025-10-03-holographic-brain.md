@@ -316,4 +316,4 @@ Bot: Alice is the CEO. (Linked: London)
 
 ---
 
-*The source code is available on [GitHub](https://github.com/razahashmi/ML-WIP). Questions, ideas, or counterarguments? I'd love to hear them.*
+*The source code is in a private repository for now. Questions, ideas, or counterarguments? I'd love to hear them.*

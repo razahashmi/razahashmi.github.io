@@ -93,4 +93,4 @@ Two things. First, **attacks I didn't write**: running the kernel as a defense o
 
 Node.js 22 or newer, no dependencies. `npm test` runs the 60 tests; `npm run desk`, `npm run injection-eval`, `npm run workload` and `npm run benchmark` reproduce the table above; `npm start` opens the cockpit.
 
-**[Code on GitHub →](https://github.com/razahashmi/Harness-Ultra)**
+*The repository is private for now.*
